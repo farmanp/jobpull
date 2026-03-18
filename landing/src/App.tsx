@@ -57,6 +57,7 @@ export default function App() {
             job<span>pull</span>
           </div>
           <div className="nav-links">
+            <a href="#how-it-works">How It Works</a>
             <a href="#platform">Platform</a>
             <a href="#automation">Automation</a>
             <a href={REPO_URL} target="_blank" rel="noreferrer">
@@ -92,11 +93,11 @@ export default function App() {
 
               <div className="hero-cta-group">
                 <div className="hero-cta-row">
-                  <a href="#platform" className="button button-primary button-large">
-                    Explore the Platform
+                  <a href="#how-it-works" className="button button-primary button-large">
+                    See How It Works
                   </a>
-                  <a href="#automation" className="button button-outline button-large">
-                    See Automation
+                  <a href="#platform" className="button button-outline button-large">
+                    Explore the Platform
                   </a>
                 </div>
                 <span className="hero-note">Workers + D1 + Pages. Daily cron included.</span>
@@ -139,10 +140,103 @@ export default function App() {
 
         <section className="data-bar">
           <div className="data-bar-container">
-            <StatCard value="5" label="Default source templates" />
-            <StatCard value="3" label="Fetcher types included" />
-            <StatCard value="Daily" label="Cloudflare cron" />
+            <StatCard value="4" label="Starter packs" />
+            <StatCard value="6" label="Read-only feed types" />
+            <StatCard value="Daily" label="Scheduled crawl" />
             <StatCard value="100%" label="Open source" />
+          </div>
+        </section>
+
+        <section id="how-it-works" className="process-section">
+          <div className="process-container">
+            <div className="process-header">
+              <div className="section-kicker">Simple Process</div>
+              <h2 className="process-title">How It Works</h2>
+              <p className="process-subtitle">
+                Four steps from a niche search idea to a board that stays current without turning into a scraping mess.
+              </p>
+            </div>
+
+            <div className="process-track" aria-hidden="true">
+              <div className="process-marker">
+                <span>1</span>
+              </div>
+              <div className="process-marker">
+                <span>2</span>
+              </div>
+              <div className="process-marker">
+                <span>3</span>
+              </div>
+              <div className="process-marker">
+                <span>4</span>
+              </div>
+            </div>
+
+            <div className="process-grid">
+              <article className="process-card">
+                <div className="process-step-label">Step 1</div>
+                <div className="process-visual process-visual-pack">
+                  <span className="process-pack-pill active">Product</span>
+                  <span className="process-pack-pill">Engineering</span>
+                  <span className="process-pack-pill">Design</span>
+                  <span className="process-pack-pill">GTM</span>
+                </div>
+                <h3>Pick a starter pack</h3>
+                <p>
+                  Start with a role preset that already ships with targeting rules, focus tags, and a sane first-pass
+                  source bundle.
+                </p>
+              </article>
+
+              <article className="process-card">
+                <div className="process-step-label">Step 2</div>
+                <div className="process-visual process-visual-feeds">
+                  <span className="process-feed-pill">Greenhouse</span>
+                  <span className="process-feed-pill">Lever</span>
+                  <span className="process-feed-pill">Ashby</span>
+                  <span className="process-feed-pill">JSON Feed</span>
+                </div>
+                <h3>Connect public feeds</h3>
+                <p>
+                  Add official read-only endpoints instead of brittle HTML scrapers, then layer in your own tenant and
+                  niche sources.
+                </p>
+              </article>
+
+              <article className="process-card">
+                <div className="process-step-label">Step 3</div>
+                <div className="process-visual process-visual-flow">
+                  <div className="process-flow-node">Fetch</div>
+                  <div className="process-flow-arrow"></div>
+                  <div className="process-flow-node">Classify</div>
+                  <div className="process-flow-arrow"></div>
+                  <div className="process-flow-node">Refresh</div>
+                </div>
+                <h3>Run and classify</h3>
+                <p>
+                  The worker fetches feeds, applies your include and exclude rules, dedupes jobs, and quietly hides
+                  stale listings on recrawl.
+                </p>
+              </article>
+
+              <article className="process-card process-card-highlight">
+                <div className="process-step-label">Step 4</div>
+                <div className="process-visual process-visual-board">
+                  <div className="process-board-shell">
+                    <div className="process-board-header"></div>
+                    <div className="process-board-line short"></div>
+                    <div className="process-board-line"></div>
+                    <div className="process-board-line"></div>
+                  </div>
+                  <div className="process-board-badge">Live board</div>
+                </div>
+                <h3>Review and share</h3>
+                <p>
+                  The searchable board, digest, and admin tools all sit on the same dataset, so the board you publish
+                  is the board you actually operate.
+                </p>
+              </article>
+            </div>
           </div>
         </section>
 
