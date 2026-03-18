@@ -1,0 +1,10 @@
+{
+  "name": "job-pull-server",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "node --experimental-loader ./loader.mjs src/index.ts",
+    "build": "tsc --noEmit -p tsconfig.json",
+    "test": "node --experimental-loader ./loader.mjs --test test/*.test.ts"
+  }
+}

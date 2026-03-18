@@ -1,0 +1,4 @@
+ALTER TABLE jobs ADD COLUMN is_stale INTEGER NOT NULL DEFAULT 0;
+ALTER TABLE jobs ADD COLUMN stale_at TEXT;
+
+CREATE INDEX IF NOT EXISTS idx_jobs_is_stale ON jobs(is_stale);

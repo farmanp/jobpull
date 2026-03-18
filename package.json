@@ -1,0 +1,28 @@
+{
+  "name": "job-pull",
+  "private": true,
+  "workspaces": [
+    "worker",
+    "web",
+    "landing",
+    "server",
+    "docs"
+  ],
+  "scripts": {
+    "setup": "npx tsx scripts/setup.ts",
+    "cli": "npx tsx scripts/cli/index.ts",
+    "dev:worker": "npm run dev -w worker",
+    "dev:server": "npm run dev -w server",
+    "dev:web": "npm run dev -w web",
+    "dev:landing": "npm run dev -w landing",
+    "dev:docs": "npm run dev -w docs",
+    "build": "npm run build -w worker && npm run build -w server && npm run build -w web && npm run build -w landing && npm run build -w docs",
+    "build:server": "npm run build -w server",
+    "test": "npm run test -w worker && npm run test -w server",
+    "test:server": "npm run test -w server",
+    "test:web": "npm run test -w web"
+  },
+  "devDependencies": {
+    "tsx": "^4.19.0"
+  }
+}

@@ -1,0 +1,25 @@
+name = "job-pull-worker"
+main = "src/index.ts"
+compatibility_date = "2025-12-01"
+
+[observability]
+enabled = true
+
+[vars]
+# CHANGE ME: set your contact email in the crawler User-Agent
+USER_AGENT = "JobPullBot/1.0 (+contact:you@example.com)"
+DEFAULT_TIMEOUT_MS = "10000"
+DEFAULT_MAX_RETRIES = "3"
+HOST_CONCURRENCY = "2"
+HOST_SPACING_MS = "750"
+
+[[d1_databases]]
+binding = "DB"
+# CHANGE ME: set your D1 database name and ID (run `npm run setup` to auto-configure)
+database_name = "job_pull_db"
+database_id = "REPLACE_ME"
+migrations_dir = "migrations"
+
+[triggers]
+crons = ["0 7 * * *"]
+

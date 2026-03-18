@@ -1,0 +1,15 @@
+services:
+  job-pull:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    env_file:
+      - .env.docker
+    environment:
+      PORT: 8787
+      DB_PATH: /data/job_pull.sqlite
+    ports:
+      - "8787:8787"
+    volumes:
+      - ./data:/data
+    restart: unless-stopped

@@ -1,0 +1,17 @@
+node_modules
+coverage
+dist
+.wrangler
+.git
+.github
+data
+*.sqlite
+*.sqlite-shm
+*.sqlite-wal
+.env
+.env.local
+.env.production
+.env.docker
+.dev.vars
+*.log
+server/test

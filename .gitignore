@@ -1,0 +1,27 @@
+node_modules
+dist
+build
+coverage
+.wrangler
+.docusaurus
+data/
+*.sqlite
+*.sqlite-shm
+*.sqlite-wal
+
+# Secrets & env files (the .example versions are tracked)
+.env
+.env.local
+.env.production
+.env.docker
+.dev.vars
+
+# OS / editor
+.DS_Store
+*.swp
+*.swo
+.gemini-clipboard/
+AGENTS.md
+GEMINI.md
+.idea/
+.vscode/

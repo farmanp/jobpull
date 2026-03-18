@@ -1,0 +1,5 @@
+# Worker secrets for local development.
+# Copy this file to .dev.vars and fill in your values.
+# NEVER commit the .dev.vars file itself.
+
+ADMIN_TOKEN=changeme
