@@ -1,5 +1,5 @@
 /**
- * `job-pull init` — delegates to the original setup.ts wizard
+ * `jobpull init` — delegates to the original setup.ts wizard
  */
 
 import { resolve, join } from "node:path";

@@ -1,5 +1,5 @@
 services:
-  job-pull:
+  jobpull:
     build:
       context: .
       dockerfile: Dockerfile
@@ -7,7 +7,7 @@ services:
       - .env.docker
     environment:
       PORT: 8787
-      DB_PATH: /data/job_pull.sqlite
+      DB_PATH: /data/jobpull.sqlite
     ports:
       - "8787:8787"
     volumes:

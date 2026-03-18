@@ -1,6 +1,6 @@
 import "./styles.css";
 
-const REPO_URL = "https://github.com/farmanp/job_pull";
+const REPO_URL = "https://github.com/farmanp/jobpull";
 const DOCS_URL = `${REPO_URL}#readme`;
 const CUSTOMIZING_URL = `${REPO_URL}/blob/main/CUSTOMIZING.md`;
 
@@ -54,7 +54,7 @@ export default function App() {
       <nav className="navbar">
         <div className="nav-container">
           <div className="brand">
-            job_<span>pull</span>
+            job<span>pull</span>
           </div>
           <div className="nav-links">
             <a href="#platform">Platform</a>
@@ -85,7 +85,7 @@ export default function App() {
                 Tune it to your search.
               </h1>
               <p className="hero-subtitle">
-                job_pull is an open-source crawler and dashboard for Greenhouse, Lever, and JSON job feeds like
+                jobpull is an open-source crawler and dashboard for Greenhouse, Lever, and JSON job feeds like
                 RemoteOK, Remotive, Arbeitnow, and Working Nomads. It ships pre-tuned for remote product roles, but
                 the rules are yours to change.
               </p>
@@ -152,7 +152,7 @@ export default function App() {
               <div className="section-kicker">Platform</div>
               <h2 className="section-title">A board built around explicit rules.</h2>
               <p className="section-subtitle">
-                Stop relying on ranking algorithms you do not control. job_pull keeps the crawl and the UI small enough
+                Stop relying on ranking algorithms you do not control. jobpull keeps the crawl and the UI small enough
                 that you can actually decide which roles make it onto the board.
               </p>
 
@@ -186,7 +186,7 @@ export default function App() {
                 </div>
                 <div className="ui-body">
                   <div className="ui-row">
-                    <strong>Board:</strong> <span>job_pull</span>
+                    <strong>Board:</strong> <span>jobpull</span>
                   </div>
                   <div className="ui-row">
                     <strong>Includes:</strong> <span>Product Manager</span>, <span>Director of Product</span>
@@ -251,7 +251,7 @@ export default function App() {
 
       <footer className="footer">
         <div className="footer-container">
-          <div className="footer-brand">job_pull</div>
+          <div className="footer-brand">jobpull</div>
           <div className="footer-links">
             <span>Open Source Software</span>
             <a href={CUSTOMIZING_URL} target="_blank" rel="noreferrer">

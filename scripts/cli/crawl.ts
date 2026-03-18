@@ -1,5 +1,5 @@
 /**
- * `job-pull crawl` — trigger a manual crawl
+ * `jobpull crawl` — trigger a manual crawl
  */
 
 import {
@@ -10,7 +10,7 @@ import {
 export async function runCrawl(apiBase: string, token: string) {
   token = await ensureToken(token);
 
-  console.log(`\n${BOLD}🕷️  job_pull — Manual Crawl${RESET}`);
+  console.log(`\n${BOLD}🕷️  jobpull — Manual Crawl${RESET}`);
   console.log(`${DIM}Triggering crawler on ${apiBase}...${RESET}\n`);
 
   const startTime = Date.now();

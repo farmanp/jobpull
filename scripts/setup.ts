@@ -1,11 +1,11 @@
 #!/usr/bin/env node
 
 /**
- * job_pull setup CLI
+ * jobpull setup CLI
  *
  * Interactive setup for self-hosters:
- *   npx job-pull init        — full guided setup
- *   npx job-pull init --skip-db  — skip D1 creation (CI or existing DB)
+ *   npx jobpull init        — full guided setup
+ *   npx jobpull init --skip-db  — skip D1 creation (CI or existing DB)
  *
  * What it does:
  *   1. Checks prerequisites (node, wrangler)
@@ -97,7 +97,7 @@ async function main() {
   const args = process.argv.slice(2);
   const skipDb = args.includes("--skip-db");
 
-  log(`\n${BOLD}🚀 job_pull — Self-Host Setup${RESET}`);
+  log(`\n${BOLD}🚀 jobpull — Self-Host Setup${RESET}`);
   log(`${DIM}Set up your own job board in ~2 minutes${RESET}\n`);
 
   /* ── Step 1: Prerequisites ────────────────────────────────────── */
@@ -130,7 +130,7 @@ async function main() {
 
   const boardName = await ask("Board name", "Remote PM Jobs");
   const contactEmail = await ask("Contact email (for crawler User-Agent)", "you@example.com");
-  const dbName = await ask("D1 database name", "job_pull_db");
+  const dbName = await ask("D1 database name", "jobpull_db");
   const packAnswer = await ask("Starter pack (product / engineering / design / gtm)", "product");
   const selectedPack = getRolePack(packAnswer)?.key ?? "product";
 
@@ -191,7 +191,7 @@ async function main() {
     warn("Local migration failed — run manually: cd worker && wrangler d1 migrations apply DB --local");
   }
 
-  const packSeedPath = join(tmpdir(), `job-pull-pack-${Date.now()}.sql`);
+  const packSeedPath = join(tmpdir(), `jobpull-pack-${Date.now()}.sql`);
   try {
     writeFileSync(packSeedPath, buildPackSeedSql(selectedPack as PackName, boardName, contactEmail));
     run(`${wrangler} d1 execute DB --local --file=${packSeedPath}`, WORKER_DIR);

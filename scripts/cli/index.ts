@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 
 /**
- * job_pull CLI — multi-command entry point
+ * jobpull CLI — multi-command entry point
  *
  * Usage:
  *   npx tsx scripts/cli/index.ts init           — guided first-time setup
@@ -20,7 +20,7 @@ const RED = "\x1b[31m";
 
 function printUsage() {
   console.log(`
-${BOLD}🔍 job_pull CLI${RESET}
+${BOLD}🔍 jobpull CLI${RESET}
 ${DIM}Self-hosted job board management${RESET}
 
 ${BOLD}Usage:${RESET}

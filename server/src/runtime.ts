@@ -77,7 +77,7 @@ export async function createServerRuntime(options: ServerOptions): Promise<Serve
 }
 
 export function buildRuntimeOptionsFromEnv(baseDir: string): ServerOptions {
-  const dbPath = process.env.DB_PATH ?? "/data/job_pull.sqlite";
+  const dbPath = process.env.DB_PATH ?? "/data/jobpull.sqlite";
   const webDistDir = process.env.WEB_DIST_DIR ?? join(baseDir, "web", "dist");
   const migrationsDir = process.env.MIGRATIONS_DIR ?? join(baseDir, "worker", "migrations");
 

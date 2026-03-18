@@ -1,5 +1,5 @@
 /**
- * `job-pull config` — interactive role-targeting wizard
+ * `jobpull config` — interactive role-targeting wizard
  *
  * Walks the user through setting up what roles to search for,
  * then writes the config via PUT /api/admin/config.
@@ -34,7 +34,7 @@ async function collectKeywords(prompt: string): Promise<string[]> {
 export async function runConfig(apiBase: string, token: string) {
   token = await ensureToken(token);
 
-  console.log(`\n${BOLD}🎯 job_pull — Role Configuration${RESET}`);
+  console.log(`\n${BOLD}🎯 jobpull — Role Configuration${RESET}`);
   console.log(`${DIM}Configure what kinds of jobs your board searches for${RESET}\n`);
 
   // 1. Fetch current config

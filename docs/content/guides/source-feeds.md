@@ -5,7 +5,7 @@ slug: /guides/source-feeds
 
 # Source feeds
 
-`job_pull` is feed-first. Prefer official public JSON or XML endpoints instead of brittle HTML scraping.
+`jobpull` is feed-first. Prefer official public JSON or XML endpoints instead of brittle HTML scraping.
 
 ## Built-in read-only sources
 

@@ -37,11 +37,11 @@ type Source = {
 };
 
 function printUsage() {
-  console.log(`\n${BOLD}Usage:${RESET} job-pull packs <list|show|apply> [pack]\n`);
+  console.log(`\n${BOLD}Usage:${RESET} jobpull packs <list|show|apply> [pack]\n`);
 }
 
 function printPackSummary() {
-  console.log(`\n${BOLD}🎒 job_pull — Starter Packs${RESET}\n`);
+  console.log(`\n${BOLD}🎒 jobpull — Starter Packs${RESET}\n`);
   for (const pack of listRolePacks()) {
     console.log(`  ${CYAN}${pack.key}${RESET} — ${pack.summary}`);
   }

@@ -1,5 +1,5 @@
 /**
- * `job-pull sources` — interactive source management
+ * `jobpull sources` — interactive source management
  */
 
 import {
@@ -31,7 +31,7 @@ function printSourceTable(sources: Source[]) {
 export async function runSources(apiBase: string, token: string) {
   token = await ensureToken(token);
 
-  console.log(`\n${BOLD}📡 job_pull — Source Management${RESET}`);
+  console.log(`\n${BOLD}📡 jobpull — Source Management${RESET}`);
   console.log(`${DIM}Manage which job boards your crawler pulls from${RESET}\n`);
 
   // Fetch sources

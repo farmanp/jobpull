@@ -3,14 +3,14 @@ import type { Config } from "@docusaurus/types";
 import type * as Preset from "@docusaurus/preset-classic";
 
 const config: Config = {
-  title: "job_pull",
+  title: "jobpull",
   tagline: "Self-hosted job board docs and operator guides",
   url: "http://127.0.0.1",
   baseUrl: "/",
   onBrokenLinks: "throw",
   favicon: "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='90'%3E%F0%9F%94%8D%3C/text%3E%3C/svg%3E",
-  organizationName: "job-pull",
-  projectName: "job-pull-docs",
+  organizationName: "farmanp",
+  projectName: "jobpull",
   trailingSlash: false,
   markdown: {
     hooks: {
@@ -38,9 +38,9 @@ const config: Config = {
     ]
   ],
   themeConfig: {
-    image: "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1200 630'%3E%3Crect width='1200' height='630' fill='%23111827'/%3E%3Ctext x='80' y='280' fill='%23f8fafc' font-size='72' font-family='Arial'%3Ejob_pull%3C/text%3E%3Ctext x='80' y='370' fill='%2394a3b8' font-size='34' font-family='Arial'%3EDocs and operator guides%3C/text%3E%3C/svg%3E",
+    image: "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1200 630'%3E%3Crect width='1200' height='630' fill='%23111827'/%3E%3Ctext x='80' y='280' fill='%23f8fafc' font-size='72' font-family='Arial'%3Ejobpull%3C/text%3E%3Ctext x='80' y='370' fill='%2394a3b8' font-size='34' font-family='Arial'%3EDocs and operator guides%3C/text%3E%3C/svg%3E",
     navbar: {
-      title: "job_pull",
+      title: "jobpull",
       items: [
         { to: "/docs/intro", label: "Docs", position: "left" },
         { to: "/docs/getting-started/cloudflare-quickstart", label: "Cloudflare", position: "left" },
@@ -66,7 +66,7 @@ const config: Config = {
           ]
         }
       ],
-      copyright: `Copyright ${new Date().getFullYear()} job_pull`
+      copyright: `Copyright ${new Date().getFullYear()} jobpull`
     },
     prism: {
       theme: prismThemes.github,

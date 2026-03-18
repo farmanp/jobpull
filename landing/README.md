@@ -1,6 +1,6 @@
-# job_pull Landing
+# jobpull Landing
 
-Marketing site for the `job_pull` project.
+Marketing site for the `jobpull` project.
 
 ## Commands
 

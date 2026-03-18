@@ -30,7 +30,7 @@ Set these in `.env.docker`:
 ```env
 ADMIN_TOKEN=change-me
 PORT=8787
-DB_PATH=/data/job_pull.sqlite
+DB_PATH=/data/jobpull.sqlite
 CRON_SCHEDULE=0 7 * * *
 USER_AGENT=JobPullBot/1.0 (+contact:you@example.com)
 STALE_THRESHOLD_DAYS=14
@@ -39,7 +39,7 @@ STALE_THRESHOLD_DAYS=14
 ## Runtime shape
 
 - app URL: `http://127.0.0.1:8787`
-- persistent DB file: `/data/job_pull.sqlite`
+- persistent DB file: `/data/jobpull.sqlite`
 - volume mount: `./data:/data`
 
 ## When to choose Docker instead of Cloudflare

@@ -5,7 +5,7 @@ slug: /getting-started/cloudflare-quickstart
 
 # Cloudflare quick start
 
-This is the reference deployment path for `job_pull`.
+This is the reference deployment path for `jobpull`.
 
 ## Prerequisites
 
@@ -17,8 +17,8 @@ This is the reference deployment path for `job_pull`.
 ## Fast path
 
 ```bash
-git clone https://github.com/farmanp/job_pull.git
-cd job_pull
+git clone https://github.com/farmanp/jobpull.git
+cd jobpull
 npm install
 npm run setup
 ```

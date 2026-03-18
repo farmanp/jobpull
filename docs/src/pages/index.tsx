@@ -40,12 +40,12 @@ export default function Home(): JSX.Element {
   return (
     <Layout
       title="Docs"
-      description="Docusaurus documentation site for job_pull setup, deployment, and operations."
+      description="Docusaurus documentation site for jobpull setup, deployment, and operations."
     >
       <main className={styles.page}>
         <section className={styles.hero}>
           <p className={styles.eyebrow}>Docs Server</p>
-          <h1>job_pull Docs</h1>
+          <h1>jobpull Docs</h1>
           <p className={styles.copy}>
             Setup guides, deployment paths, starter-pack workflows, and operator runbooks for the
             self-hosted job board.

@@ -1,5 +1,5 @@
 {
-  "name": "job-pull-docs",
+  "name": "jobpull-docs",
   "private": true,
   "scripts": {
     "dev": "docusaurus start --host 127.0.0.1 --port 4175",

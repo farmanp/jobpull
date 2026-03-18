@@ -26,7 +26,7 @@ COPY --from=build /app /app
 
 ENV NODE_ENV=production \
     PORT=8787 \
-    DB_PATH=/data/job_pull.sqlite \
+    DB_PATH=/data/jobpull.sqlite \
     CRON_SCHEDULE="0 7 * * *"
 
 EXPOSE 8787

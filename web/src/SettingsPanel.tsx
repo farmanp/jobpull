@@ -41,7 +41,7 @@ async function adminFetch(
 }
 
 export function SettingsPanel({ apiBase }: Props) {
-  const [token, setToken] = useState(() => localStorage.getItem("job_pull_token") ?? "");
+  const [token, setToken] = useState(() => localStorage.getItem("jobpull_token") ?? "");
   const [authed, setAuthed] = useState(false);
   const [config, setConfig] = useState<BoardConfig | null>(null);
   const [sources, setSources] = useState<Source[]>([]);
@@ -52,7 +52,7 @@ export function SettingsPanel({ apiBase }: Props) {
 
   // -- Auth --
   function handleAuth() {
-    localStorage.setItem("job_pull_token", token);
+    localStorage.setItem("jobpull_token", token);
     setAuthed(false);
     adminFetch(apiBase, token, "/api/admin/config")
       .then((r) => {

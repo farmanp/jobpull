@@ -365,7 +365,7 @@ export function App() {
 
       <footer className="site-footer">
         <p>
-          Powered by <a href="https://github.com/farmanp/job_pull" target="_blank" rel="noreferrer">job_pull</a>
+          Powered by <a href="https://github.com/farmanp/jobpull" target="_blank" rel="noreferrer">jobpull</a>
           {" · "}Free &amp; open source
         </p>
       </footer>

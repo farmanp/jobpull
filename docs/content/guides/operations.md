@@ -51,6 +51,6 @@ For Cloudflare, treat D1 as the source of truth.
 
 For Docker:
 
-- back up `./data/job_pull.sqlite`
+- back up `./data/jobpull.sqlite`
 - keep `.env.docker` safe
 - keep your source and config choices documented

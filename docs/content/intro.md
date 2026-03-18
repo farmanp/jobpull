@@ -3,9 +3,9 @@ title: Overview
 slug: /intro
 ---
 
-# job_pull overview
+# jobpull overview
 
-`job_pull` is a self-hosted job board starter kit. It crawls official public feeds, classifies roles, stores them in a small database, and serves a searchable board with an admin path for configuration and recrawls.
+`jobpull` is a self-hosted job board starter kit. It crawls official public feeds, classifies roles, stores them in a small database, and serves a searchable board with an admin path for configuration and recrawls.
 
 ## What it does well
 
@@ -17,7 +17,7 @@ slug: /intro
 
 ## Who this is for
 
-Use `job_pull` if you want to:
+Use `jobpull` if you want to:
 
 - launch a niche job board for a role or community
 - run a self-hosted board instead of relying on a third-party aggregator

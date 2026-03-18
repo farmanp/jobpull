@@ -1,4 +1,4 @@
-# job_pull 🔍
+# jobpull 🔍
 
 **Your own job board in 5 minutes.** Fork, customize, deploy — Cloudflare-first, with a portable Docker path and a built-in Docusaurus docs site.
 
@@ -40,8 +40,8 @@ A self-hosted job board that automatically crawls official public feeds from Gre
 ### Option A: Interactive CLI (recommended)
 
 ```bash
-git clone YOUR_REPO_URL
-cd job_pull
+git clone https://github.com/farmanp/jobpull.git
+cd jobpull
 npm install
 npm run setup
 ```
@@ -62,7 +62,7 @@ npm install
 
 # 2. Create D1 database
 cd worker
-npx wrangler d1 create job_pull_db
+npx wrangler d1 create jobpull_db
 # Copy the returned database_id into worker/wrangler.toml
 
 # 3. Apply migrations

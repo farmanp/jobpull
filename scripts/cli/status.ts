@@ -1,5 +1,5 @@
 /**
- * `job-pull status` — show board statistics
+ * `jobpull status` — show board statistics
  */
 
 import {
@@ -18,7 +18,7 @@ function timeAgo(iso: string): string {
 }
 
 export async function runStatus(apiBase: string, _token: string) {
-  console.log(`\n${BOLD}📊 job_pull — Board Status${RESET}`);
+  console.log(`\n${BOLD}📊 jobpull — Board Status${RESET}`);
   console.log(`${DIM}Fetching from ${apiBase}...${RESET}\n`);
 
   // Meta

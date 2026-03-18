@@ -1,6 +1,6 @@
 # Customizing Your Job Board
 
-This guide covers every way to make job_pull your own — from a quick role-focus change to building entirely new crawler integrations.
+This guide covers every way to make jobpull your own — from a quick role-focus change to building entirely new crawler integrations.
 
 ---
 
@@ -405,7 +405,7 @@ docker compose up --build
 ```
 
 Expected runtime shape:
-- file-backed SQLite at `/data/job_pull.sqlite`
+- file-backed SQLite at `/data/jobpull.sqlite`
 - internal scheduler using the same cron shape as Cloudflare
 - built `web/dist` served by the same Node process that handles API routes
 

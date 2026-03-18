@@ -14,11 +14,11 @@ describe("server runtime", () => {
   let webDistDir: string;
 
   beforeEach(() => {
-    dir = mkdtempSync(join(tmpdir(), "job-pull-runtime-"));
-    dbPath = join(dir, "job_pull.sqlite");
+    dir = mkdtempSync(join(tmpdir(), "jobpull-runtime-"));
+    dbPath = join(dir, "jobpull.sqlite");
     webDistDir = join(dir, "web-dist");
     mkdirSync(webDistDir, { recursive: true });
-    writeFileSync(join(webDistDir, "index.html"), "<!doctype html><html><body>job-pull</body></html>");
+    writeFileSync(join(webDistDir, "index.html"), "<!doctype html><html><body>jobpull</body></html>");
   });
 
   afterEach(() => {
@@ -146,6 +146,6 @@ describe("server runtime", () => {
     assert.equal(response.status, 200);
     assert.equal(response.headers.get("content-type"), "text/html; charset=utf-8");
     const html = await response.text();
-    assert.match(html, /job-pull/);
+    assert.match(html, /jobpull/);
   });
 });

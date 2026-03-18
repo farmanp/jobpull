@@ -10,7 +10,7 @@ describe("SqliteDatabase", () => {
   let dbPath: string;
 
   beforeEach(() => {
-    dir = mkdtempSync(join(tmpdir(), "job-pull-sqlite-"));
+    dir = mkdtempSync(join(tmpdir(), "jobpull-sqlite-"));
     dbPath = join(dir, "test.sqlite");
   });
 
