@@ -1,30 +1,39 @@
 :root {
-  --ifm-color-primary: #0f766e;
-  --ifm-color-primary-dark: #0b625c;
-  --ifm-color-primary-darker: #095551;
-  --ifm-color-primary-darkest: #07443f;
-  --ifm-color-primary-light: #14877f;
-  --ifm-color-primary-lighter: #1a968d;
-  --ifm-color-primary-lightest: #27ada3;
-  --ifm-background-color: #f7f4ec;
-  --ifm-navbar-background-color: rgba(17, 24, 39, 0.96);
-  --ifm-navbar-link-color: #f8fafc;
-  --ifm-navbar-link-hover-color: #fbbf24;
+  --ifm-color-primary: #0aa34f;
+  --ifm-color-primary-dark: #088642;
+  --ifm-color-primary-darker: #07763b;
+  --ifm-color-primary-darkest: #055929;
+  --ifm-color-primary-light: #18b35f;
+  --ifm-color-primary-lighter: #25c46d;
+  --ifm-color-primary-lightest: #51d68c;
+  --ifm-background-color: #ffffff;
+  --ifm-background-surface-color: #ffffff;
+  --ifm-navbar-background-color: rgba(255, 255, 255, 0.9);
+  --ifm-navbar-link-color: #08120d;
+  --ifm-navbar-link-hover-color: #0aa34f;
   --ifm-code-font-size: 95%;
-  --ifm-font-family-base: "Avenir Next", "Segoe UI", sans-serif;
-  --ifm-heading-font-family: "Avenir Next", "Segoe UI", sans-serif;
+  --ifm-font-family-base: "Avenir Next", "Avenir", "Segoe UI", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  --ifm-heading-font-family: "Avenir Next", "Avenir", "Segoe UI", "Helvetica Neue", Helvetica, Arial, sans-serif;
 }
 
 html[data-theme="dark"] {
-  --ifm-background-color: #111827;
-  --ifm-background-surface-color: #111827;
-  --ifm-navbar-background-color: #020617;
-  --ifm-color-primary: #2dd4bf;
+  --ifm-background-color: #08120d;
+  --ifm-background-surface-color: #08120d;
+  --ifm-navbar-background-color: rgba(8, 18, 13, 0.96);
+  --ifm-navbar-link-color: #f8fcfa;
+  --ifm-navbar-link-hover-color: #8be4af;
+  --ifm-color-primary: #8be4af;
 }
 
 .navbar__title,
 .navbar__link {
   font-weight: 700;
+}
+
+.navbar {
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border-bottom: 1px solid rgba(8, 18, 13, 0.08);
 }
 
 .theme-doc-sidebar-container {
@@ -47,5 +56,5 @@ html[data-theme="dark"] {
 }
 
 .footer {
-  background: #020617;
+  background: linear-gradient(135deg, #08120d 0%, #122118 100%);
 }

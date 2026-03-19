@@ -3,75 +3,312 @@ import Layout from "@theme/Layout";
 import Link from "@docusaurus/Link";
 import styles from "./index.module.css";
 
-const cards = [
-  {
-    title: "Cloudflare Quick Start",
-    body: "Bring up the Worker, D1, and frontend with the CLI-first setup flow.",
-    to: "/docs/getting-started/cloudflare-quickstart"
-  },
-  {
-    title: "Docker Compose",
-    body: "Run the portable Node + SQLite deployment with same-origin docs and API.",
-    to: "/docs/getting-started/docker-compose"
-  },
-  {
-    title: "Starter Packs",
-    body: "Use product, engineering, design, or GTM presets without hand-editing SQL.",
-    to: "/docs/guides/starter-packs"
-  },
-  {
-    title: "Customization",
-    body: "Tune role targeting, sources, branding, cron, and stale-job behavior.",
-    to: "/docs/guides/customization"
-  },
-  {
-    title: "Source Feeds",
-    body: "Configure Greenhouse, Lever, Ashby, Recruitee, Personio XML, and JSON feeds.",
-    to: "/docs/guides/source-feeds"
-  },
-  {
-    title: "Operations",
-    body: "Handle migrations, stale jobs, recrawls, and local troubleshooting cleanly.",
-    to: "/docs/guides/operations"
-  },
-  {
-    title: "API Reference",
-    body: "See the public and admin endpoints, query params, and stale-job controls.",
-    to: "/docs/reference/api"
-  }
-];
+const REPO_URL = "https://github.com/farmanp/jobpull";
+
+function JobCardMockup({
+  title,
+  company,
+  source,
+  status,
+  detail,
+}: {
+  title: string;
+  company: string;
+  source: string;
+  status: string;
+  detail: string;
+}) {
+  return (
+    <div className={styles.jobCard}>
+      <div className={styles.jobCardHeader}>
+        <div className={styles.companyAvatar}></div>
+        <div>
+          <h4>{company}</h4>
+          <span className={styles.jobTag}>{source}</span>
+        </div>
+      </div>
+      <h3 className={styles.jobTitle}>{title}</h3>
+      <div className={styles.jobPills}>
+        <span>{status}</span>
+        <span>{detail}</span>
+      </div>
+      <div className={styles.jobCardFooter}>
+        <span className={styles.jobDetail}>Matched by your rules</span>
+        <div className={styles.reviewButton}>Review</div>
+      </div>
+    </div>
+  );
+}
+
+function StatCard({ value, label }: { value: string; label: string }) {
+  return (
+    <div className={styles.statCard}>
+      <div className={styles.statValue}>{value}</div>
+      <div className={styles.statLabel}>{label}</div>
+    </div>
+  );
+}
 
 export default function Home(): JSX.Element {
   return (
     <Layout
-      title="Docs"
-      description="Docusaurus documentation site for jobpull setup, deployment, customization, and operations."
+      title="jobpull"
+      description="Self-hosted job board starter kit for Greenhouse, Lever, Ashby, Recruitee, Personio XML, and JSON feeds."
     >
       <main className={styles.page}>
-        <section className={styles.hero}>
-          <p className={styles.eyebrow}>Published Docs</p>
-          <h1>jobpull Docs</h1>
-          <p className={styles.copy}>
-            Setup guides, deployment paths, customization workflows, and operator runbooks for the
-            self-hosted job board.
-          </p>
-          <div className={styles.actions}>
-            <Link className="button button--primary button--lg" to="/docs/intro">
-              Open Docs
-            </Link>
-            <Link className={styles.secondaryAction} to="/docs/guides/customization">
-              Customize
-            </Link>
+        <section className={styles.heroSection}>
+          <div className={styles.heroContainer}>
+            <div className={styles.heroContent}>
+              <div className={styles.pillBadge}>Cloudflare-first job board</div>
+              <h1 className={styles.heroTitle}>
+                Run your own board.
+                <br />
+                Tune it to your search.
+              </h1>
+              <p className={styles.heroSubtitle}>
+                jobpull is an open-source crawler and dashboard for public job feeds from Greenhouse, Lever, Ashby,
+                Recruitee, Personio XML, and generic JSON sources. It ships pre-tuned for remote product roles, with
+                starter packs for product, engineering, design, and GTM.
+              </p>
+              <div className={styles.heroActions}>
+                <Link className={`${styles.button} ${styles.buttonPrimary}`} to="/docs/getting-started/cloudflare-quickstart">
+                  Setup Guide
+                </Link>
+                <Link className={`${styles.button} ${styles.buttonOutline}`} to="/docs/guides/customization">
+                  Customize
+                </Link>
+              </div>
+              <p className={styles.heroNote}>Cloudflare-first, with a Docker path and daily crawl scheduling.</p>
+            </div>
+
+            <div className={styles.heroVisual}>
+              <div className={styles.cardStack}>
+                <div className={`${styles.cardStackItem} ${styles.cardStackFront}`}>
+                  <JobCardMockup
+                    title="Senior Product Manager, Core Platform"
+                    company="Stripe"
+                    source="Greenhouse"
+                    status="Remote"
+                    detail="platform focus"
+                  />
+                </div>
+                <div className={`${styles.cardStackItem} ${styles.cardStackMiddle}`}>
+                  <JobCardMockup
+                    title="Director of Product, Growth"
+                    company="Netlify"
+                    source="Lever"
+                    status="Hybrid"
+                    detail="growth focus"
+                  />
+                </div>
+                <div className={`${styles.cardStackItem} ${styles.cardStackBack}`}>
+                  <JobCardMockup
+                    title="Head of Product"
+                    company="Remote Startup"
+                    source="Remote JSON"
+                    status="Remote"
+                    detail="custom feed"
+                  />
+                </div>
+              </div>
+            </div>
           </div>
         </section>
 
-        <section className={styles.grid}>
-          {cards.map((card) => (
-            <Link key={card.title} className={styles.card} to={card.to}>
-              <h2>{card.title}</h2>
-              <p>{card.body}</p>
-            </Link>
-          ))}
+        <section className={styles.statsSection}>
+          <div className={styles.statsGrid}>
+            <StatCard value="4" label="Starter packs" />
+            <StatCard value="6" label="Read-only feed types" />
+            <StatCard value="Daily" label="Scheduled crawl" />
+            <StatCard value="100%" label="Open source" />
+          </div>
+        </section>
+
+        <section className={styles.processSection}>
+          <div className={styles.sectionHeader}>
+            <div className={styles.sectionKicker}>Simple Process</div>
+            <h2 className={styles.processTitle}>How It Works</h2>
+            <p className={styles.processSubtitle}>
+              Four steps from a niche search idea to a board that stays current without turning into a scraping mess.
+            </p>
+          </div>
+
+          <div className={styles.processTrack} aria-hidden="true">
+            <div className={styles.processMarker}><span>1</span></div>
+            <div className={styles.processMarker}><span>2</span></div>
+            <div className={styles.processMarker}><span>3</span></div>
+            <div className={styles.processMarker}><span>4</span></div>
+          </div>
+
+          <div className={styles.processGrid}>
+            <article className={styles.processCard}>
+              <div className={styles.stepLabel}>Step 1</div>
+              <div className={`${styles.processVisual} ${styles.packVisual}`}>
+                <span className={`${styles.packPill} ${styles.packPillActive}`}>Product</span>
+                <span className={styles.packPill}>Engineering</span>
+                <span className={styles.packPill}>Design</span>
+                <span className={styles.packPill}>GTM</span>
+              </div>
+              <h3>Pick a starter pack</h3>
+              <p>
+                Start with a role preset that already ships with targeting rules, focus tags, and a sane first-pass
+                source bundle.
+              </p>
+            </article>
+
+            <article className={styles.processCard}>
+              <div className={styles.stepLabel}>Step 2</div>
+              <div className={`${styles.processVisual} ${styles.feedsVisual}`}>
+                <span className={styles.feedPill}>Greenhouse</span>
+                <span className={styles.feedPill}>Lever</span>
+                <span className={styles.feedPill}>Ashby</span>
+                <span className={styles.feedPill}>JSON Feed</span>
+              </div>
+              <h3>Connect public feeds</h3>
+              <p>
+                Add official read-only endpoints instead of brittle HTML scrapers, then layer in your own tenant and
+                niche sources.
+              </p>
+            </article>
+
+            <article className={styles.processCard}>
+              <div className={styles.stepLabel}>Step 3</div>
+              <div className={`${styles.processVisual} ${styles.flowVisual}`}>
+                <div className={styles.flowNode}>Fetch</div>
+                <div className={styles.flowArrow}></div>
+                <div className={styles.flowNode}>Classify</div>
+                <div className={styles.flowArrow}></div>
+                <div className={styles.flowNode}>Refresh</div>
+              </div>
+              <h3>Run and classify</h3>
+              <p>
+                The worker fetches feeds, applies your include and exclude rules, dedupes jobs, and quietly hides
+                stale listings on recrawl.
+              </p>
+            </article>
+
+            <article className={`${styles.processCard} ${styles.processCardHighlight}`}>
+              <div className={styles.stepLabel}>Step 4</div>
+              <div className={`${styles.processVisual} ${styles.boardVisual}`}>
+                <div className={styles.boardShell}>
+                  <div className={styles.boardHeader}></div>
+                  <div className={`${styles.boardLine} ${styles.boardLineShort}`}></div>
+                  <div className={styles.boardLine}></div>
+                  <div className={styles.boardLine}></div>
+                </div>
+                <div className={styles.boardBadge}>Live board</div>
+              </div>
+              <h3>Review and share</h3>
+              <p>
+                The searchable board, digest, and admin tools all sit on the same dataset, so the board you publish is
+                the board you actually operate.
+              </p>
+            </article>
+          </div>
+        </section>
+
+        <section className={styles.featureSection}>
+          <div className={styles.featureGrid}>
+            <div>
+              <div className={styles.sectionKicker}>Platform</div>
+              <h2 className={styles.sectionTitle}>A board built around explicit rules.</h2>
+              <p className={styles.sectionSubtitle}>
+                Stop relying on ranking algorithms you do not control. jobpull keeps the crawl and the UI small enough
+                that you can actually decide which roles make it onto the board.
+              </p>
+              <ul className={styles.featureList}>
+                <li>
+                  <strong>Rule-based targeting</strong>
+                  <p>Match titles with include and exclude patterns, optional description fallback, and remote-only filtering.</p>
+                </li>
+                <li>
+                  <strong>Searchable dashboard</strong>
+                  <p>Review jobs by query, remote status, focus area, and sort order from the same board your crawler populates.</p>
+                </li>
+                <li>
+                  <strong>Rebrandable defaults</strong>
+                  <p>Change the board name, tagline, starter pack, seed sources, focus categories, and theme without rewriting the app.</p>
+                </li>
+              </ul>
+            </div>
+
+            <div className={styles.window}>
+              <div className={styles.windowHeader}>
+                <div className={styles.windowDots}>
+                  <span></span>
+                  <span></span>
+                  <span></span>
+                </div>
+                <div className={styles.windowTab}>Settings Panel</div>
+              </div>
+              <div className={styles.windowBody}>
+                <div className={styles.windowRow}>
+                  <strong>Board:</strong> <span>jobpull</span>
+                </div>
+                <div className={styles.windowRow}>
+                  <strong>Includes:</strong> <span>Product Manager</span> <span>Director of Product</span>
+                </div>
+                <div className={styles.windowRow}>
+                  <strong>Excludes:</strong> <span>Project Manager</span> <span>Product Marketing</span>
+                </div>
+                <div className={styles.windowRow}>
+                  <strong>Focus:</strong> <span>growth</span> <span>platform</span> <span>technical</span>
+                </div>
+                <hr className={styles.windowDivider} />
+                <div className={styles.toggleRow}>
+                  Remote only: <strong>Enabled</strong>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section className={styles.automationSection}>
+          <div className={styles.automationHeader}>
+            <div className={styles.sectionKicker}>Automation</div>
+            <h2 className={styles.sectionTitle}>Scheduled crawling without a hosted platform.</h2>
+            <p className={styles.sectionSubtitle}>
+              The worker ships with a daily Cloudflare cron, an authenticated run endpoint for manual refreshes, and
+              D1-backed configuration shared by the crawler, CLI, and admin UI. The Docker path keeps the same
+              workflow with SQLite.
+            </p>
+          </div>
+          <div className={styles.automationGrid}>
+            <div className={styles.automationCard}>
+              <h3>Daily crawl</h3>
+              <p>Run once per day by default, then change the cron when your board needs a different cadence.</p>
+            </div>
+            <div className={styles.automationCard}>
+              <h3>Manual reruns</h3>
+              <p>Trigger a crawl from the admin tools or hit the protected API when you want a fresh pass immediately.</p>
+            </div>
+            <div className={styles.automationCard}>
+              <h3>Shared config</h3>
+              <p>Board rules live in D1, so configuration changes made through the UI or CLI feed the same runtime state.</p>
+            </div>
+            <div className={styles.automationCard}>
+              <h3>Safety controls</h3>
+              <p>ETags, retries, host spacing, and backoff keep the crawler practical without pretending to be a scraping farm.</p>
+            </div>
+          </div>
+        </section>
+
+        <section className={styles.ctaSection}>
+          <div className={styles.ctaContainer}>
+            <h2>Launch a board that matches your search.</h2>
+            <p>Fork the repo, pick a starter pack, and deploy the board on Cloudflare or Docker.</p>
+            <div className={styles.ctaActions}>
+              <Link className={`${styles.button} ${styles.buttonPrimary}`} to="/docs/getting-started/cloudflare-quickstart">
+                Open Setup Guide
+              </Link>
+              <Link className={`${styles.button} ${styles.buttonOutlineInverse}`} to="/docs/intro">
+                Browse Docs
+              </Link>
+              <Link className={`${styles.button} ${styles.buttonOutlineInverse}`} href={REPO_URL}>
+                GitHub
+              </Link>
+            </div>
+          </div>
         </section>
       </main>
     </Layout>
