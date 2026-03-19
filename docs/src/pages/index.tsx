@@ -1,9 +1,12 @@
 import React from "react";
 import Layout from "@theme/Layout";
 import Link from "@docusaurus/Link";
+import useDocusaurusContext from "@docusaurus/useDocusaurusContext";
 import styles from "./index.module.css";
 
 const REPO_URL = "https://github.com/farmanp/jobpull";
+const DEFAULT_WAITLIST_URL =
+  "https://github.com/farmanp/jobpull/issues/new?title=Join%20the%20jobpull%20waitlist&body=Name:%0AEmail:%0AWhat%20kind%20of%20board%20do%20you%20want%20to%20run%3F%0A";
 
 function JobCardMockup({
   title,
@@ -50,6 +53,12 @@ function StatCard({ value, label }: { value: string; label: string }) {
 }
 
 export default function Home(): JSX.Element {
+  const { siteConfig } = useDocusaurusContext();
+  const waitlistUrl =
+    typeof siteConfig.customFields?.waitlistUrl === "string"
+      ? siteConfig.customFields.waitlistUrl
+      : DEFAULT_WAITLIST_URL;
+
   return (
     <Layout
       title="jobpull"
@@ -73,6 +82,9 @@ export default function Home(): JSX.Element {
               <div className={styles.heroActions}>
                 <Link className={`${styles.button} ${styles.buttonPrimary}`} to="/docs/getting-started/cloudflare-quickstart">
                   Setup Guide
+                </Link>
+                <Link className={`${styles.button} ${styles.buttonAccent}`} href={waitlistUrl} target="_blank" rel="noreferrer">
+                  Join Waitlist
                 </Link>
                 <Link className={`${styles.button} ${styles.buttonOutline}`} to="/docs/guides/customization">
                   Customize
@@ -289,6 +301,38 @@ export default function Home(): JSX.Element {
             <div className={styles.automationCard}>
               <h3>Safety controls</h3>
               <p>ETags, retries, host spacing, and backoff keep the crawler practical without pretending to be a scraping farm.</p>
+            </div>
+          </div>
+        </section>
+
+        <section className={styles.waitlistSection}>
+          <div className={styles.waitlistGrid}>
+            <div className={styles.waitlistCopy}>
+              <div className={styles.sectionKicker}>Waitlist</div>
+              <h2 className={styles.sectionTitle}>Get launch updates while jobpull is still early.</h2>
+              <p className={styles.sectionSubtitle}>
+                If you want to run a niche board for your community, team, or newsletter, join the waitlist and tell
+                us what you are trying to launch. That input is the fastest way to shape the next deployment guides,
+                feed templates, and onboarding flow.
+              </p>
+              <ul className={styles.waitlistPoints}>
+                <li>See new starter packs and source templates before they land in the polished quick-start flow.</li>
+                <li>Get notified when the hosted signup path replaces the temporary early-access form.</li>
+                <li>Tell us which deployment path, role niche, or feed support would actually make this useful.</li>
+              </ul>
+            </div>
+
+            <div className={styles.waitlistCard}>
+              <div className={styles.waitlistCardKicker}>Early Access</div>
+              <h3>Join the jobpull waitlist</h3>
+              <p>
+                Open the current signup flow, share your email and use case, and we will use that feedback to tighten
+                the launch path.
+              </p>
+              <Link className={`${styles.button} ${styles.buttonAccent}`} href={waitlistUrl} target="_blank" rel="noreferrer">
+                Join Waitlist
+              </Link>
+              <span className={styles.waitlistCaption}>Opens the current signup form in a new tab.</span>
             </div>
           </div>
         </section>

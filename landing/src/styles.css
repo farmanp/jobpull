@@ -930,6 +930,89 @@ h5 {
   line-height: 1.6;
 }
 
+.waitlist-section {
+  padding: 120px 24px;
+}
+
+.waitlist-container {
+  max-width: 1240px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 1.2fr 0.8fr;
+  gap: 48px;
+  align-items: center;
+}
+
+.waitlist-copy {
+  max-width: 680px;
+}
+
+.waitlist-points {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.waitlist-points li {
+  position: relative;
+  padding-left: 22px;
+  color: var(--text-secondary);
+  line-height: 1.7;
+}
+
+.waitlist-points li::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 12px;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--accent);
+  box-shadow: 0 0 0 5px rgba(10, 163, 79, 0.12);
+}
+
+.waitlist-card {
+  background: linear-gradient(180deg, #ffffff 0%, #f5f9f6 100%);
+  border: 1px solid var(--border-medium);
+  border-radius: 28px;
+  box-shadow: var(--shadow-float);
+  padding: 32px;
+}
+
+.waitlist-card-kicker {
+  display: inline-flex;
+  margin-bottom: 16px;
+  padding: 6px 12px;
+  border-radius: var(--radius-pill);
+  background: var(--accent-light);
+  color: var(--accent);
+  font-size: 0.8rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.waitlist-card h3 {
+  font-size: 1.65rem;
+  line-height: 1.2;
+  margin-bottom: 12px;
+}
+
+.waitlist-card p {
+  color: var(--text-secondary);
+  line-height: 1.7;
+  margin-bottom: 24px;
+}
+
+.waitlist-caption {
+  display: block;
+  margin-top: 14px;
+  color: var(--text-tertiary);
+  font-size: 0.9rem;
+}
+
 .bottom-cta {
   padding: 120px 24px;
   text-align: center;
@@ -1017,12 +1100,14 @@ h5 {
 
   .hero-container,
   .feature-container,
-  .automation-layout {
+  .automation-layout,
+  .waitlist-container {
     grid-template-columns: 1fr;
     gap: 44px;
   }
 
-  .hero-content {
+  .hero-content,
+  .waitlist-copy {
     margin: 0 auto;
     text-align: center;
   }
@@ -1055,6 +1140,10 @@ h5 {
     grid-template-columns: 1fr;
   }
 
+  .waitlist-points {
+    text-align: left;
+  }
+
   .process-track {
     display: none;
   }
@@ -1070,6 +1159,7 @@ h5 {
   }
 
   .feature-section,
+  .waitlist-section,
   .bottom-cta {
     padding: 88px 20px;
   }

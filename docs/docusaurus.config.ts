@@ -2,6 +2,9 @@ import { themes as prismThemes } from "prism-react-renderer";
 import type { Config } from "@docusaurus/types";
 import type * as Preset from "@docusaurus/preset-classic";
 
+const defaultWaitlistUrl =
+  "https://github.com/farmanp/jobpull/issues/new?title=Join%20the%20jobpull%20waitlist&body=Name:%0AEmail:%0AWhat%20kind%20of%20board%20do%20you%20want%20to%20run%3F%0A";
+
 const config: Config = {
   title: "jobpull",
   tagline: "Self-hosted job board docs and operator guides",
@@ -20,6 +23,9 @@ const config: Config = {
   i18n: {
     defaultLocale: "en",
     locales: ["en"]
+  },
+  customFields: {
+    waitlistUrl: process.env.WAITLIST_URL ?? defaultWaitlistUrl
   },
   presets: [
     [
@@ -46,6 +52,7 @@ const config: Config = {
         { to: "/docs/getting-started/cloudflare-quickstart", label: "Cloudflare", position: "left" },
         { to: "/docs/getting-started/docker-compose", label: "Docker", position: "left" },
         { to: "/docs/guides/customization", label: "Customize", position: "left" },
+        { href: process.env.WAITLIST_URL ?? defaultWaitlistUrl, label: "Waitlist", position: "right", target: "_blank" },
         { href: "https://github.com/farmanp/jobpull", label: "GitHub", position: "right" }
       ]
     },

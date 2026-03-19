@@ -4,6 +4,9 @@ const REPO_URL = "https://github.com/farmanp/jobpull";
 const DOCS_URL = "https://farmanp.github.io/jobpull/";
 const SETUP_URL = "https://farmanp.github.io/jobpull/docs/getting-started/cloudflare-quickstart";
 const CUSTOMIZE_URL = "https://farmanp.github.io/jobpull/docs/guides/customization";
+const DEFAULT_WAITLIST_URL =
+  "https://github.com/farmanp/jobpull/issues/new?title=Join%20the%20jobpull%20waitlist&body=Name:%0AEmail:%0AWhat%20kind%20of%20board%20do%20you%20want%20to%20run%3F%0A";
+const WAITLIST_URL = import.meta.env.VITE_WAITLIST_URL ?? DEFAULT_WAITLIST_URL;
 
 function JobCardMockup({
   title,
@@ -61,6 +64,7 @@ export default function App() {
             <a href="#how-it-works">How It Works</a>
             <a href="#platform">Platform</a>
             <a href="#automation">Automation</a>
+            <a href="#waitlist">Waitlist</a>
             <a href={REPO_URL} target="_blank" rel="noreferrer">
               Open Source
             </a>
@@ -96,6 +100,9 @@ export default function App() {
                 <div className="hero-cta-row">
                   <a href="#how-it-works" className="button button-primary button-large">
                     See How It Works
+                  </a>
+                  <a href="#waitlist" className="button button-solid button-large">
+                    Join Waitlist
                   </a>
                   <a href={SETUP_URL} className="button button-outline button-large" target="_blank" rel="noreferrer">
                     Setup Guide
@@ -333,6 +340,38 @@ export default function App() {
                 <h3>Safety controls</h3>
                 <p>ETags, retries, host spacing, and backoff keep the crawler practical without pretending to be a scraping farm.</p>
               </div>
+            </div>
+          </div>
+        </section>
+
+        <section id="waitlist" className="waitlist-section section-bg-light">
+          <div className="waitlist-container">
+            <div className="waitlist-copy">
+              <div className="section-kicker">Waitlist</div>
+              <h2 className="section-title">Get launch updates while jobpull is still early.</h2>
+              <p className="section-subtitle">
+                If you want to run a niche board for your community, team, or newsletter, join the waitlist and tell
+                us what you are trying to launch. That input is the fastest way to shape the next deployment guides,
+                feed templates, and onboarding flow.
+              </p>
+              <ul className="waitlist-points">
+                <li>See new starter packs and source templates before they land in the polished quick-start flow.</li>
+                <li>Get notified when the hosted signup path replaces the temporary early-access form.</li>
+                <li>Tell us which deployment path, role niche, or feed support would actually make this useful.</li>
+              </ul>
+            </div>
+
+            <div className="waitlist-card">
+              <div className="waitlist-card-kicker">Early Access</div>
+              <h3>Join the jobpull waitlist</h3>
+              <p>
+                Open the current signup flow, share your email and use case, and we will use that feedback to tighten
+                the launch path.
+              </p>
+              <a href={WAITLIST_URL} className="button button-solid button-large" target="_blank" rel="noreferrer">
+                Join Waitlist
+              </a>
+              <span className="waitlist-caption">Opens the current signup form in a new tab.</span>
             </div>
           </div>
         </section>

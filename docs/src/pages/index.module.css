@@ -113,6 +113,16 @@
   color: #ffffff;
 }
 
+.buttonAccent {
+  background: #0aa34f;
+  color: #ffffff;
+}
+
+.buttonAccent:hover {
+  color: #ffffff;
+  background: #088642;
+}
+
 .buttonOutline {
   background: transparent;
   color: #08120d;
@@ -661,6 +671,91 @@
   margin: 0;
 }
 
+.waitlistSection {
+  background: rgba(245, 249, 246, 0.92);
+}
+
+.waitlistGrid {
+  max-width: 1240px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 1.2fr 0.8fr;
+  gap: 2rem;
+  align-items: center;
+}
+
+.waitlistCopy {
+  max-width: 680px;
+}
+
+.waitlistPoints {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.waitlistPoints li {
+  position: relative;
+  padding-left: 1.4rem;
+  color: #51615a;
+  line-height: 1.7;
+}
+
+.waitlistPoints li::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0.7rem;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: #0aa34f;
+  box-shadow: 0 0 0 5px rgba(10, 163, 79, 0.12);
+}
+
+.waitlistCard {
+  padding: 2rem;
+  border-radius: 28px;
+  background: linear-gradient(180deg, #ffffff 0%, #f5f9f6 100%);
+  border: 1px solid #d9e2dc;
+  box-shadow: 0 24px 48px rgba(8, 18, 13, 0.08), 0 8px 16px rgba(8, 18, 13, 0.05);
+}
+
+.waitlistCardKicker {
+  display: inline-flex;
+  margin-bottom: 1rem;
+  padding: 0.4rem 0.8rem;
+  border-radius: 999px;
+  background: rgba(10, 163, 79, 0.1);
+  color: #0aa34f;
+  font-size: 0.8rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.waitlistCard h3 {
+  margin: 0 0 0.85rem;
+  color: #08120d;
+  font-size: 1.65rem;
+}
+
+.waitlistCard p {
+  margin: 0 0 1.4rem;
+  color: #51615a;
+  line-height: 1.7;
+}
+
+.waitlistCaption {
+  display: block;
+  margin-top: 0.85rem;
+  color: #7f8e87;
+  font-size: 0.9rem;
+}
+
 .ctaSection {
   background: linear-gradient(135deg, #08120d 0%, #122118 100%);
   text-align: center;
@@ -684,7 +779,8 @@
 
 @media (max-width: 1100px) {
   .heroContainer,
-  .featureGrid {
+  .featureGrid,
+  .waitlistGrid {
     grid-template-columns: 1fr;
   }
 
@@ -709,12 +805,17 @@
   .automationGrid {
     grid-template-columns: 1fr;
   }
+
+  .waitlistCopy {
+    max-width: none;
+  }
 }
 
 @media (max-width: 768px) {
   .heroSection,
   .featureSection,
   .automationSection,
+  .waitlistSection,
   .ctaSection,
   .processSection {
     padding: 4.5rem 1.25rem;
