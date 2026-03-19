@@ -184,10 +184,48 @@ export default function App() {
               <article className="process-card">
                 <div className="process-step-label">Step 1</div>
                 <div className="process-visual process-visual-pack">
-                  <span className="process-pack-pill active">Product</span>
-                  <span className="process-pack-pill">Engineering</span>
-                  <span className="process-pack-pill">Design</span>
-                  <span className="process-pack-pill">GTM</span>
+                  <div className="process-pack-console">
+                    <div className="process-pack-sidebar">
+                      <div className="process-pack-option active">
+                        <strong>Product</strong>
+                        <span>Default</span>
+                      </div>
+                      <div className="process-pack-option">
+                        <strong>Engineering</strong>
+                        <span>Preset</span>
+                      </div>
+                      <div className="process-pack-option">
+                        <strong>Design</strong>
+                        <span>Preset</span>
+                      </div>
+                      <div className="process-pack-option">
+                        <strong>GTM</strong>
+                        <span>Preset</span>
+                      </div>
+                    </div>
+                    <div className="process-pack-panel">
+                      <div className="process-mini-label">Preset loaded</div>
+                      <div className="process-chip-row">
+                        <span className="process-mini-chip active">Remote only</span>
+                        <span className="process-mini-chip">Daily digest</span>
+                      </div>
+                      <div className="process-line-group">
+                        <div className="process-line-title">Target titles</div>
+                        <div className="process-chip-row compact">
+                          <span className="process-mini-chip">Product Manager</span>
+                          <span className="process-mini-chip">Director of Product</span>
+                        </div>
+                      </div>
+                      <div className="process-line-group">
+                        <div className="process-line-title">Focus tags</div>
+                        <div className="process-chip-row compact">
+                          <span className="process-mini-chip">growth</span>
+                          <span className="process-mini-chip">platform</span>
+                          <span className="process-mini-chip">technical</span>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
                 </div>
                 <h3>Pick a starter pack</h3>
                 <p>
@@ -199,10 +237,42 @@ export default function App() {
               <article className="process-card">
                 <div className="process-step-label">Step 2</div>
                 <div className="process-visual process-visual-feeds">
-                  <span className="process-feed-pill">Greenhouse</span>
-                  <span className="process-feed-pill">Lever</span>
-                  <span className="process-feed-pill">Ashby</span>
-                  <span className="process-feed-pill">JSON Feed</span>
+                  <div className="process-feed-console">
+                    <div className="process-feed-column">
+                      <div className="process-feed-row">
+                        <span className="process-feed-dot"></span>
+                        <span>Greenhouse</span>
+                        <span className="process-feed-state">live</span>
+                      </div>
+                      <div className="process-feed-row">
+                        <span className="process-feed-dot"></span>
+                        <span>Lever</span>
+                        <span className="process-feed-state">live</span>
+                      </div>
+                      <div className="process-feed-row">
+                        <span className="process-feed-dot"></span>
+                        <span>Ashby</span>
+                        <span className="process-feed-state">live</span>
+                      </div>
+                      <div className="process-feed-row">
+                        <span className="process-feed-dot"></span>
+                        <span>JSON feed</span>
+                        <span className="process-feed-state">custom</span>
+                      </div>
+                    </div>
+                    <div className="process-feed-connector">
+                      <div className="process-feed-hub">sync</div>
+                    </div>
+                    <div className="process-feed-target">
+                      <div className="process-feed-target-kicker">Normalized jobs</div>
+                      <div className="process-feed-target-card">
+                        <div className="process-feed-target-line short"></div>
+                        <div className="process-feed-target-line"></div>
+                        <div className="process-feed-target-line medium"></div>
+                        <div className="process-feed-target-badge">4 sources connected</div>
+                      </div>
+                    </div>
+                  </div>
                 </div>
                 <h3>Connect public feeds</h3>
                 <p>
@@ -214,11 +284,42 @@ export default function App() {
               <article className="process-card">
                 <div className="process-step-label">Step 3</div>
                 <div className="process-visual process-visual-flow">
-                  <div className="process-flow-node">Fetch</div>
-                  <div className="process-flow-arrow"></div>
-                  <div className="process-flow-node">Classify</div>
-                  <div className="process-flow-arrow"></div>
-                  <div className="process-flow-node">Refresh</div>
+                  <div className="process-pipeline">
+                    <div className="process-stage">
+                      <div className="process-stage-name">Fetch</div>
+                      <div className="process-stage-card">
+                        <div className="process-stage-line short"></div>
+                        <div className="process-stage-line"></div>
+                        <div className="process-stage-line medium"></div>
+                      </div>
+                    </div>
+                    <div className="process-stage-connector"></div>
+                    <div className="process-stage">
+                      <div className="process-stage-name">Classify</div>
+                      <div className="process-stage-card process-stage-card-tags">
+                        <span className="process-stage-token include">include</span>
+                        <span className="process-stage-token exclude">exclude</span>
+                        <span className="process-stage-token focus">platform</span>
+                        <span className="process-stage-token focus">growth</span>
+                      </div>
+                    </div>
+                    <div className="process-stage-connector"></div>
+                    <div className="process-stage">
+                      <div className="process-stage-name">Refresh</div>
+                      <div className="process-stage-card process-stage-card-refresh">
+                        <div className="process-refresh-row">
+                          <span className="process-refresh-dot live"></span>
+                          <span>Visible jobs</span>
+                          <strong>119</strong>
+                        </div>
+                        <div className="process-refresh-row">
+                          <span className="process-refresh-dot stale"></span>
+                          <span>Stale hidden</span>
+                          <strong>6</strong>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
                 </div>
                 <h3>Run and classify</h3>
                 <p>
@@ -230,11 +331,35 @@ export default function App() {
               <article className="process-card process-card-highlight">
                 <div className="process-step-label">Step 4</div>
                 <div className="process-visual process-visual-board">
-                  <div className="process-board-shell">
-                    <div className="process-board-header"></div>
-                    <div className="process-board-line short"></div>
-                    <div className="process-board-line"></div>
-                    <div className="process-board-line"></div>
+                  <div className="process-board-app">
+                    <div className="process-board-toolbar">
+                      <div className="process-board-search"></div>
+                      <div className="process-board-filter"></div>
+                      <div className="process-board-filter short"></div>
+                    </div>
+                    <div className="process-board-layout">
+                      <div className="process-board-list">
+                        <div className="process-board-item active">
+                          <div className="process-board-item-title"></div>
+                          <div className="process-board-item-meta"></div>
+                        </div>
+                        <div className="process-board-item">
+                          <div className="process-board-item-title short"></div>
+                          <div className="process-board-item-meta"></div>
+                        </div>
+                        <div className="process-board-item">
+                          <div className="process-board-item-title"></div>
+                          <div className="process-board-item-meta short"></div>
+                        </div>
+                      </div>
+                      <div className="process-board-side">
+                        <div className="process-board-side-title">Today digest</div>
+                        <div className="process-board-side-line short"></div>
+                        <div className="process-board-side-line"></div>
+                        <div className="process-board-side-line medium"></div>
+                        <div className="process-board-share">Share</div>
+                      </div>
+                    </div>
                   </div>
                   <div className="process-board-badge">Live board</div>
                 </div>

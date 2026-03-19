@@ -156,10 +156,48 @@ export default function Home(): JSX.Element {
             <article className={styles.processCard}>
               <div className={styles.stepLabel}>Step 1</div>
               <div className={`${styles.processVisual} ${styles.packVisual}`}>
-                <span className={`${styles.packPill} ${styles.packPillActive}`}>Product</span>
-                <span className={styles.packPill}>Engineering</span>
-                <span className={styles.packPill}>Design</span>
-                <span className={styles.packPill}>GTM</span>
+                <div className={styles.packConsole}>
+                  <div className={styles.packSidebar}>
+                    <div className={`${styles.packOption} ${styles.packOptionActive}`}>
+                      <strong>Product</strong>
+                      <span>Default</span>
+                    </div>
+                    <div className={styles.packOption}>
+                      <strong>Engineering</strong>
+                      <span>Preset</span>
+                    </div>
+                    <div className={styles.packOption}>
+                      <strong>Design</strong>
+                      <span>Preset</span>
+                    </div>
+                    <div className={styles.packOption}>
+                      <strong>GTM</strong>
+                      <span>Preset</span>
+                    </div>
+                  </div>
+                  <div className={styles.packPanel}>
+                    <div className={styles.miniLabel}>Preset loaded</div>
+                    <div className={styles.chipRow}>
+                      <span className={`${styles.miniChip} ${styles.miniChipActive}`}>Remote only</span>
+                      <span className={styles.miniChip}>Daily digest</span>
+                    </div>
+                    <div className={styles.lineGroup}>
+                      <div className={styles.lineTitle}>Target titles</div>
+                      <div className={`${styles.chipRow} ${styles.chipRowCompact}`}>
+                        <span className={styles.miniChip}>Product Manager</span>
+                        <span className={styles.miniChip}>Director of Product</span>
+                      </div>
+                    </div>
+                    <div className={styles.lineGroup}>
+                      <div className={styles.lineTitle}>Focus tags</div>
+                      <div className={`${styles.chipRow} ${styles.chipRowCompact}`}>
+                        <span className={styles.miniChip}>growth</span>
+                        <span className={styles.miniChip}>platform</span>
+                        <span className={styles.miniChip}>technical</span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
               </div>
               <h3>Pick a starter pack</h3>
               <p>
@@ -171,10 +209,42 @@ export default function Home(): JSX.Element {
             <article className={styles.processCard}>
               <div className={styles.stepLabel}>Step 2</div>
               <div className={`${styles.processVisual} ${styles.feedsVisual}`}>
-                <span className={styles.feedPill}>Greenhouse</span>
-                <span className={styles.feedPill}>Lever</span>
-                <span className={styles.feedPill}>Ashby</span>
-                <span className={styles.feedPill}>JSON Feed</span>
+                <div className={styles.feedConsole}>
+                  <div className={styles.feedColumn}>
+                    <div className={styles.feedRow}>
+                      <span className={styles.feedDot}></span>
+                      <span>Greenhouse</span>
+                      <span className={styles.feedState}>live</span>
+                    </div>
+                    <div className={styles.feedRow}>
+                      <span className={styles.feedDot}></span>
+                      <span>Lever</span>
+                      <span className={styles.feedState}>live</span>
+                    </div>
+                    <div className={styles.feedRow}>
+                      <span className={styles.feedDot}></span>
+                      <span>Ashby</span>
+                      <span className={styles.feedState}>live</span>
+                    </div>
+                    <div className={styles.feedRow}>
+                      <span className={styles.feedDot}></span>
+                      <span>JSON feed</span>
+                      <span className={styles.feedState}>custom</span>
+                    </div>
+                  </div>
+                  <div className={styles.feedConnector}>
+                    <div className={styles.feedHub}>sync</div>
+                  </div>
+                  <div className={styles.feedTarget}>
+                    <div className={styles.feedTargetKicker}>Normalized jobs</div>
+                    <div className={styles.feedTargetCard}>
+                      <div className={`${styles.feedTargetLine} ${styles.feedTargetLineShort}`}></div>
+                      <div className={styles.feedTargetLine}></div>
+                      <div className={`${styles.feedTargetLine} ${styles.feedTargetLineMedium}`}></div>
+                      <div className={styles.feedTargetBadge}>4 sources connected</div>
+                    </div>
+                  </div>
+                </div>
               </div>
               <h3>Connect public feeds</h3>
               <p>
@@ -186,11 +256,42 @@ export default function Home(): JSX.Element {
             <article className={styles.processCard}>
               <div className={styles.stepLabel}>Step 3</div>
               <div className={`${styles.processVisual} ${styles.flowVisual}`}>
-                <div className={styles.flowNode}>Fetch</div>
-                <div className={styles.flowArrow}></div>
-                <div className={styles.flowNode}>Classify</div>
-                <div className={styles.flowArrow}></div>
-                <div className={styles.flowNode}>Refresh</div>
+                <div className={styles.pipeline}>
+                  <div className={styles.stage}>
+                    <div className={styles.stageName}>Fetch</div>
+                    <div className={styles.stageCard}>
+                      <div className={`${styles.stageLine} ${styles.stageLineShort}`}></div>
+                      <div className={styles.stageLine}></div>
+                      <div className={`${styles.stageLine} ${styles.stageLineMedium}`}></div>
+                    </div>
+                  </div>
+                  <div className={styles.stageConnector}></div>
+                  <div className={styles.stage}>
+                    <div className={styles.stageName}>Classify</div>
+                    <div className={`${styles.stageCard} ${styles.stageCardTags}`}>
+                      <span className={`${styles.stageToken} ${styles.stageTokenInclude}`}>include</span>
+                      <span className={`${styles.stageToken} ${styles.stageTokenExclude}`}>exclude</span>
+                      <span className={`${styles.stageToken} ${styles.stageTokenFocus}`}>platform</span>
+                      <span className={`${styles.stageToken} ${styles.stageTokenFocus}`}>growth</span>
+                    </div>
+                  </div>
+                  <div className={styles.stageConnector}></div>
+                  <div className={styles.stage}>
+                    <div className={styles.stageName}>Refresh</div>
+                    <div className={`${styles.stageCard} ${styles.stageCardRefresh}`}>
+                      <div className={styles.refreshRow}>
+                        <span className={`${styles.refreshDot} ${styles.refreshDotLive}`}></span>
+                        <span>Visible jobs</span>
+                        <strong>119</strong>
+                      </div>
+                      <div className={styles.refreshRow}>
+                        <span className={`${styles.refreshDot} ${styles.refreshDotStale}`}></span>
+                        <span>Stale hidden</span>
+                        <strong>6</strong>
+                      </div>
+                    </div>
+                  </div>
+                </div>
               </div>
               <h3>Run and classify</h3>
               <p>
@@ -202,11 +303,35 @@ export default function Home(): JSX.Element {
             <article className={`${styles.processCard} ${styles.processCardHighlight}`}>
               <div className={styles.stepLabel}>Step 4</div>
               <div className={`${styles.processVisual} ${styles.boardVisual}`}>
-                <div className={styles.boardShell}>
-                  <div className={styles.boardHeader}></div>
-                  <div className={`${styles.boardLine} ${styles.boardLineShort}`}></div>
-                  <div className={styles.boardLine}></div>
-                  <div className={styles.boardLine}></div>
+                <div className={styles.boardApp}>
+                  <div className={styles.boardToolbar}>
+                    <div className={styles.boardSearch}></div>
+                    <div className={styles.boardFilter}></div>
+                    <div className={`${styles.boardFilter} ${styles.boardFilterShort}`}></div>
+                  </div>
+                  <div className={styles.boardLayout}>
+                    <div className={styles.boardList}>
+                      <div className={`${styles.boardItem} ${styles.boardItemActive}`}>
+                        <div className={styles.boardItemTitle}></div>
+                        <div className={styles.boardItemMeta}></div>
+                      </div>
+                      <div className={styles.boardItem}>
+                        <div className={`${styles.boardItemTitle} ${styles.boardItemTitleShort}`}></div>
+                        <div className={styles.boardItemMeta}></div>
+                      </div>
+                      <div className={styles.boardItem}>
+                        <div className={styles.boardItemTitle}></div>
+                        <div className={`${styles.boardItemMeta} ${styles.boardItemMetaShort}`}></div>
+                      </div>
+                    </div>
+                    <div className={styles.boardSide}>
+                      <div className={styles.boardSideTitle}>Today digest</div>
+                      <div className={`${styles.boardSideLine} ${styles.boardSideLineShort}`}></div>
+                      <div className={styles.boardSideLine}></div>
+                      <div className={`${styles.boardSideLine} ${styles.boardSideLineMedium}`}></div>
+                      <div className={styles.boardShare}>Share</div>
+                    </div>
+                  </div>
                 </div>
                 <div className={styles.boardBadge}>Live board</div>
               </div>
