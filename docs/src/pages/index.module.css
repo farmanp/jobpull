@@ -374,7 +374,7 @@
   max-width: 1240px;
   margin: 0 auto;
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
+  grid-template-columns: repeat(2, 1fr);
   gap: 1.5rem;
 }
 
@@ -857,6 +857,326 @@
   backdrop-filter: blur(8px);
 }
 
+.processTrack {
+  display: none;
+}
+
+.processVisual {
+  min-height: 240px;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.sceneHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.sceneKicker,
+.workflowLabel,
+.feedOutputTitle {
+  color: #8be4af;
+  font-size: 0.74rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.sceneStatus {
+  padding: 6px 10px;
+  border-radius: 999px;
+  background: rgba(139, 228, 175, 0.12);
+  border: 1px solid rgba(139, 228, 175, 0.2);
+  color: #f4fff8;
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+.packPrimary,
+.feedOutput,
+.workflowCard,
+.boardPreview {
+  border-radius: 18px;
+  border: 1px solid rgba(139, 228, 175, 0.14);
+  background: rgba(255, 255, 255, 0.04);
+}
+
+.packPrimary {
+  padding: 18px;
+  background: linear-gradient(180deg, rgba(139, 228, 175, 0.16), rgba(139, 228, 175, 0.06));
+  border-color: rgba(139, 228, 175, 0.18);
+}
+
+.packPrimaryTitle {
+  color: #f4fff8;
+  font-size: 1.1rem;
+  font-weight: 700;
+  margin-bottom: 6px;
+}
+
+.packPrimaryCopy {
+  color: rgba(226, 238, 231, 0.68);
+  font-size: 0.86rem;
+  margin-bottom: 14px;
+}
+
+.sceneChipRow {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.sceneChipRow span,
+.packSecondary span,
+.workflowCardTags span,
+.boardPill {
+  display: inline-flex;
+  align-items: center;
+  min-height: 30px;
+  padding: 0 10px;
+  border-radius: 999px;
+  border: 1px solid rgba(139, 228, 175, 0.14);
+  background: rgba(255, 255, 255, 0.05);
+  color: rgba(240, 250, 245, 0.88);
+  font-size: 0.78rem;
+  font-weight: 600;
+}
+
+.packSecondary {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 10px;
+}
+
+.packSecondary span {
+  justify-content: center;
+}
+
+.feedGrid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 10px;
+}
+
+.feedItem {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  min-height: 48px;
+  padding: 0 14px;
+  border-radius: 16px;
+  border: 1px solid rgba(139, 228, 175, 0.14);
+  background: rgba(255, 255, 255, 0.04);
+  color: rgba(240, 250, 245, 0.88);
+  font-size: 0.88rem;
+  font-weight: 600;
+}
+
+.feedDot,
+.workflowStatLive,
+.workflowStatStale {
+  width: 9px;
+  height: 9px;
+  border-radius: 50%;
+  flex: 0 0 auto;
+  background: #8be4af;
+}
+
+.workflowStatStale {
+  background: rgba(240, 250, 245, 0.36);
+}
+
+.feedOutput {
+  margin-top: auto;
+  padding: 16px;
+}
+
+.feedOutputTitle {
+  margin-bottom: 12px;
+}
+
+.sceneLine {
+  width: 100%;
+  height: 9px;
+  border-radius: 999px;
+  background: rgba(240, 250, 245, 0.14);
+  margin-top: 10px;
+}
+
+.sceneLineShort {
+  width: 58%;
+}
+
+.sceneLineMedium {
+  width: 78%;
+}
+
+.workflow {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 20px minmax(0, 1fr) 20px minmax(0, 1fr);
+  gap: 10px;
+  align-items: center;
+  margin-top: auto;
+}
+
+.workflowStep {
+  min-width: 0;
+}
+
+.workflowLabel {
+  margin-bottom: 10px;
+}
+
+.workflowCard {
+  min-height: 126px;
+  padding: 14px;
+}
+
+.workflowCardTags {
+  display: flex;
+  flex-wrap: wrap;
+  align-content: flex-start;
+  gap: 8px;
+}
+
+.workflowTokenInclude {
+  background: rgba(139, 228, 175, 0.16);
+  border-color: rgba(139, 228, 175, 0.28);
+}
+
+.workflowTokenExclude {
+  background: rgba(255, 135, 135, 0.08);
+  border-color: rgba(255, 135, 135, 0.2);
+  color: #ffd8d8;
+}
+
+.workflowTokenFocus {
+  background: rgba(122, 180, 255, 0.1);
+  border-color: rgba(122, 180, 255, 0.2);
+  color: #d7e8ff;
+}
+
+.workflowCardStats {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 12px;
+}
+
+.workflowStat {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  color: rgba(240, 250, 245, 0.84);
+  font-size: 0.82rem;
+}
+
+.workflowLink {
+  position: relative;
+  height: 2px;
+  background: rgba(139, 228, 175, 0.32);
+}
+
+.workflowLink::after {
+  content: "";
+  position: absolute;
+  right: -1px;
+  top: 50%;
+  width: 9px;
+  height: 9px;
+  border-top: 2px solid rgba(139, 228, 175, 0.42);
+  border-right: 2px solid rgba(139, 228, 175, 0.42);
+  transform: translateY(-50%) rotate(45deg);
+}
+
+.boardPreview {
+  margin-top: auto;
+  padding: 16px;
+}
+
+.boardTopbar {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 12px;
+}
+
+.boardSearch,
+.boardFilter {
+  height: 30px;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.08);
+}
+
+.boardSearch {
+  flex: 1 1 auto;
+}
+
+.boardFilter {
+  width: 88px;
+}
+
+.boardColumns {
+  display: flex;
+  align-items: stretch;
+  gap: 12px;
+}
+
+.boardResults,
+.boardDetail {
+  flex: 1 1 0;
+}
+
+.boardResults {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.boardResult,
+.boardDetail {
+  border-radius: 14px;
+  border: 1px solid rgba(139, 228, 175, 0.12);
+  background: rgba(255, 255, 255, 0.03);
+}
+
+.boardResult {
+  padding: 12px;
+}
+
+.boardResultActive {
+  background: rgba(139, 228, 175, 0.08);
+  border-color: rgba(139, 228, 175, 0.24);
+}
+
+.boardDetail {
+  padding: 12px;
+  display: flex;
+  flex-direction: column;
+}
+
+.boardPill {
+  align-self: flex-start;
+  margin-bottom: 12px;
+}
+
+.boardShare {
+  margin-top: auto;
+  align-self: flex-start;
+  padding: 9px 12px;
+  border-radius: 999px;
+  background: rgba(139, 228, 175, 0.14);
+  border: 1px solid rgba(139, 228, 175, 0.24);
+  color: #f4fff8;
+  font-size: 0.78rem;
+  font-weight: 700;
+}
+
 .featureSection {
   background: rgba(245, 249, 246, 0.86);
 }
@@ -1107,7 +1427,7 @@
   }
 
   .processGrid {
-    grid-template-columns: repeat(2, 1fr);
+    grid-template-columns: 1fr;
   }
 
   .automationGrid {
@@ -1118,31 +1438,23 @@
     max-width: none;
   }
 
-  .packConsole,
-  .feedConsole,
-  .boardLayout {
+  .feedGrid,
+  .packSecondary,
+  .boardColumns {
     grid-template-columns: 1fr;
   }
 
-  .pipeline {
+  .workflow {
     grid-template-columns: 1fr;
   }
 
-  .feedConnector {
-    min-height: 56px;
-  }
-
-  .feedConnector::after {
-    display: none;
-  }
-
-  .stageConnector {
+  .workflowLink {
     width: 2px;
     height: 24px;
     margin: 0 auto;
   }
 
-  .stageConnector::after {
+  .workflowLink::after {
     right: 50%;
     top: auto;
     bottom: -1px;
@@ -1174,7 +1486,12 @@
 
   .statsGrid,
   .processGrid,
-  .packSidebar {
+  .feedGrid,
+  .packSecondary {
     grid-template-columns: 1fr;
+  }
+
+  .boardColumns {
+    flex-direction: column;
   }
 }

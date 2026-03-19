@@ -145,58 +145,27 @@ export default function Home(): JSX.Element {
             </p>
           </div>
 
-          <div className={styles.processTrack} aria-hidden="true">
-            <div className={styles.processMarker}><span>1</span></div>
-            <div className={styles.processMarker}><span>2</span></div>
-            <div className={styles.processMarker}><span>3</span></div>
-            <div className={styles.processMarker}><span>4</span></div>
-          </div>
-
           <div className={styles.processGrid}>
             <article className={styles.processCard}>
               <div className={styles.stepLabel}>Step 1</div>
-              <div className={`${styles.processVisual} ${styles.packVisual}`}>
-                <div className={styles.packConsole}>
-                  <div className={styles.packSidebar}>
-                    <div className={`${styles.packOption} ${styles.packOptionActive}`}>
-                      <strong>Product</strong>
-                      <span>Default</span>
-                    </div>
-                    <div className={styles.packOption}>
-                      <strong>Engineering</strong>
-                      <span>Preset</span>
-                    </div>
-                    <div className={styles.packOption}>
-                      <strong>Design</strong>
-                      <span>Preset</span>
-                    </div>
-                    <div className={styles.packOption}>
-                      <strong>GTM</strong>
-                      <span>Preset</span>
-                    </div>
+              <div className={styles.processVisual}>
+                <div className={styles.sceneHeader}>
+                  <span className={styles.sceneKicker}>Starter pack</span>
+                  <span className={styles.sceneStatus}>Loaded</span>
+                </div>
+                <div className={styles.packPrimary}>
+                  <div className={styles.packPrimaryTitle}>Product</div>
+                  <div className={styles.packPrimaryCopy}>Remote PM default</div>
+                  <div className={styles.sceneChipRow}>
+                    <span>growth</span>
+                    <span>platform</span>
+                    <span>technical</span>
                   </div>
-                  <div className={styles.packPanel}>
-                    <div className={styles.miniLabel}>Preset loaded</div>
-                    <div className={styles.chipRow}>
-                      <span className={`${styles.miniChip} ${styles.miniChipActive}`}>Remote only</span>
-                      <span className={styles.miniChip}>Daily digest</span>
-                    </div>
-                    <div className={styles.lineGroup}>
-                      <div className={styles.lineTitle}>Target titles</div>
-                      <div className={`${styles.chipRow} ${styles.chipRowCompact}`}>
-                        <span className={styles.miniChip}>Product Manager</span>
-                        <span className={styles.miniChip}>Director of Product</span>
-                      </div>
-                    </div>
-                    <div className={styles.lineGroup}>
-                      <div className={styles.lineTitle}>Focus tags</div>
-                      <div className={`${styles.chipRow} ${styles.chipRowCompact}`}>
-                        <span className={styles.miniChip}>growth</span>
-                        <span className={styles.miniChip}>platform</span>
-                        <span className={styles.miniChip}>technical</span>
-                      </div>
-                    </div>
-                  </div>
+                </div>
+                <div className={styles.packSecondary}>
+                  <span>Engineering</span>
+                  <span>Design</span>
+                  <span>GTM</span>
                 </div>
               </div>
               <h3>Pick a starter pack</h3>
@@ -208,42 +177,34 @@ export default function Home(): JSX.Element {
 
             <article className={styles.processCard}>
               <div className={styles.stepLabel}>Step 2</div>
-              <div className={`${styles.processVisual} ${styles.feedsVisual}`}>
-                <div className={styles.feedConsole}>
-                  <div className={styles.feedColumn}>
-                    <div className={styles.feedRow}>
-                      <span className={styles.feedDot}></span>
-                      <span>Greenhouse</span>
-                      <span className={styles.feedState}>live</span>
-                    </div>
-                    <div className={styles.feedRow}>
-                      <span className={styles.feedDot}></span>
-                      <span>Lever</span>
-                      <span className={styles.feedState}>live</span>
-                    </div>
-                    <div className={styles.feedRow}>
-                      <span className={styles.feedDot}></span>
-                      <span>Ashby</span>
-                      <span className={styles.feedState}>live</span>
-                    </div>
-                    <div className={styles.feedRow}>
-                      <span className={styles.feedDot}></span>
-                      <span>JSON feed</span>
-                      <span className={styles.feedState}>custom</span>
-                    </div>
+              <div className={styles.processVisual}>
+                <div className={styles.sceneHeader}>
+                  <span className={styles.sceneKicker}>Read-only feeds</span>
+                  <span className={styles.sceneStatus}>4 live</span>
+                </div>
+                <div className={styles.feedGrid}>
+                  <div className={styles.feedItem}>
+                    <span className={styles.feedDot}></span>
+                    <span>Greenhouse</span>
                   </div>
-                  <div className={styles.feedConnector}>
-                    <div className={styles.feedHub}>sync</div>
+                  <div className={styles.feedItem}>
+                    <span className={styles.feedDot}></span>
+                    <span>Lever</span>
                   </div>
-                  <div className={styles.feedTarget}>
-                    <div className={styles.feedTargetKicker}>Normalized jobs</div>
-                    <div className={styles.feedTargetCard}>
-                      <div className={`${styles.feedTargetLine} ${styles.feedTargetLineShort}`}></div>
-                      <div className={styles.feedTargetLine}></div>
-                      <div className={`${styles.feedTargetLine} ${styles.feedTargetLineMedium}`}></div>
-                      <div className={styles.feedTargetBadge}>4 sources connected</div>
-                    </div>
+                  <div className={styles.feedItem}>
+                    <span className={styles.feedDot}></span>
+                    <span>Ashby</span>
                   </div>
+                  <div className={styles.feedItem}>
+                    <span className={styles.feedDot}></span>
+                    <span>JSON feed</span>
+                  </div>
+                </div>
+                <div className={styles.feedOutput}>
+                  <div className={styles.feedOutputTitle}>Normalized into one board dataset</div>
+                  <div className={`${styles.sceneLine} ${styles.sceneLineShort}`}></div>
+                  <div className={styles.sceneLine}></div>
+                  <div className={`${styles.sceneLine} ${styles.sceneLineMedium}`}></div>
                 </div>
               </div>
               <h3>Connect public feeds</h3>
@@ -255,39 +216,41 @@ export default function Home(): JSX.Element {
 
             <article className={styles.processCard}>
               <div className={styles.stepLabel}>Step 3</div>
-              <div className={`${styles.processVisual} ${styles.flowVisual}`}>
-                <div className={styles.pipeline}>
-                  <div className={styles.stage}>
-                    <div className={styles.stageName}>Fetch</div>
-                    <div className={styles.stageCard}>
-                      <div className={`${styles.stageLine} ${styles.stageLineShort}`}></div>
-                      <div className={styles.stageLine}></div>
-                      <div className={`${styles.stageLine} ${styles.stageLineMedium}`}></div>
+              <div className={styles.processVisual}>
+                <div className={styles.sceneHeader}>
+                  <span className={styles.sceneKicker}>Crawl run</span>
+                  <span className={styles.sceneStatus}>Daily</span>
+                </div>
+                <div className={styles.workflow}>
+                  <div className={styles.workflowStep}>
+                    <div className={styles.workflowLabel}>Fetch</div>
+                    <div className={styles.workflowCard}>
+                      <div className={`${styles.sceneLine} ${styles.sceneLineShort}`}></div>
+                      <div className={styles.sceneLine}></div>
+                      <div className={`${styles.sceneLine} ${styles.sceneLineMedium}`}></div>
                     </div>
                   </div>
-                  <div className={styles.stageConnector}></div>
-                  <div className={styles.stage}>
-                    <div className={styles.stageName}>Classify</div>
-                    <div className={`${styles.stageCard} ${styles.stageCardTags}`}>
-                      <span className={`${styles.stageToken} ${styles.stageTokenInclude}`}>include</span>
-                      <span className={`${styles.stageToken} ${styles.stageTokenExclude}`}>exclude</span>
-                      <span className={`${styles.stageToken} ${styles.stageTokenFocus}`}>platform</span>
-                      <span className={`${styles.stageToken} ${styles.stageTokenFocus}`}>growth</span>
+                  <div className={styles.workflowLink}></div>
+                  <div className={styles.workflowStep}>
+                    <div className={styles.workflowLabel}>Classify</div>
+                    <div className={`${styles.workflowCard} ${styles.workflowCardTags}`}>
+                      <span className={styles.workflowTokenInclude}>include</span>
+                      <span className={styles.workflowTokenExclude}>exclude</span>
+                      <span className={styles.workflowTokenFocus}>platform</span>
+                      <span className={styles.workflowTokenFocus}>growth</span>
                     </div>
                   </div>
-                  <div className={styles.stageConnector}></div>
-                  <div className={styles.stage}>
-                    <div className={styles.stageName}>Refresh</div>
-                    <div className={`${styles.stageCard} ${styles.stageCardRefresh}`}>
-                      <div className={styles.refreshRow}>
-                        <span className={`${styles.refreshDot} ${styles.refreshDotLive}`}></span>
-                        <span>Visible jobs</span>
-                        <strong>119</strong>
+                  <div className={styles.workflowLink}></div>
+                  <div className={styles.workflowStep}>
+                    <div className={styles.workflowLabel}>Refresh</div>
+                    <div className={`${styles.workflowCard} ${styles.workflowCardStats}`}>
+                      <div className={styles.workflowStat}>
+                        <span className={styles.workflowStatLive}></span>
+                        <span>119 visible</span>
                       </div>
-                      <div className={styles.refreshRow}>
-                        <span className={`${styles.refreshDot} ${styles.refreshDotStale}`}></span>
-                        <span>Stale hidden</span>
-                        <strong>6</strong>
+                      <div className={styles.workflowStat}>
+                        <span className={styles.workflowStatStale}></span>
+                        <span>6 stale hidden</span>
                       </div>
                     </div>
                   </div>
@@ -302,38 +265,40 @@ export default function Home(): JSX.Element {
 
             <article className={`${styles.processCard} ${styles.processCardHighlight}`}>
               <div className={styles.stepLabel}>Step 4</div>
-              <div className={`${styles.processVisual} ${styles.boardVisual}`}>
-                <div className={styles.boardApp}>
-                  <div className={styles.boardToolbar}>
+              <div className={styles.processVisual}>
+                <div className={styles.sceneHeader}>
+                  <span className={styles.sceneKicker}>Board preview</span>
+                  <span className={styles.sceneStatus}>Share ready</span>
+                </div>
+                <div className={styles.boardPreview}>
+                  <div className={styles.boardTopbar}>
                     <div className={styles.boardSearch}></div>
                     <div className={styles.boardFilter}></div>
-                    <div className={`${styles.boardFilter} ${styles.boardFilterShort}`}></div>
                   </div>
-                  <div className={styles.boardLayout}>
-                    <div className={styles.boardList}>
-                      <div className={`${styles.boardItem} ${styles.boardItemActive}`}>
-                        <div className={styles.boardItemTitle}></div>
-                        <div className={styles.boardItemMeta}></div>
+                  <div className={styles.boardColumns}>
+                    <div className={styles.boardResults}>
+                      <div className={`${styles.boardResult} ${styles.boardResultActive}`}>
+                        <div className={`${styles.sceneLine} ${styles.sceneLineShort}`}></div>
+                        <div className={`${styles.sceneLine} ${styles.sceneLineMedium}`}></div>
                       </div>
-                      <div className={styles.boardItem}>
-                        <div className={`${styles.boardItemTitle} ${styles.boardItemTitleShort}`}></div>
-                        <div className={styles.boardItemMeta}></div>
+                      <div className={styles.boardResult}>
+                        <div className={`${styles.sceneLine} ${styles.sceneLineMedium}`}></div>
+                        <div className={`${styles.sceneLine} ${styles.sceneLineShort}`}></div>
                       </div>
-                      <div className={styles.boardItem}>
-                        <div className={styles.boardItemTitle}></div>
-                        <div className={`${styles.boardItemMeta} ${styles.boardItemMetaShort}`}></div>
+                      <div className={styles.boardResult}>
+                        <div className={styles.sceneLine}></div>
+                        <div className={`${styles.sceneLine} ${styles.sceneLineShort}`}></div>
                       </div>
                     </div>
-                    <div className={styles.boardSide}>
-                      <div className={styles.boardSideTitle}>Today digest</div>
-                      <div className={`${styles.boardSideLine} ${styles.boardSideLineShort}`}></div>
-                      <div className={styles.boardSideLine}></div>
-                      <div className={`${styles.boardSideLine} ${styles.boardSideLineMedium}`}></div>
-                      <div className={styles.boardShare}>Share</div>
+                    <div className={styles.boardDetail}>
+                      <div className={styles.boardPill}>Today&apos;s digest</div>
+                      <div className={`${styles.sceneLine} ${styles.sceneLineShort}`}></div>
+                      <div className={styles.sceneLine}></div>
+                      <div className={`${styles.sceneLine} ${styles.sceneLineMedium}`}></div>
+                      <div className={styles.boardShare}>Share board</div>
                     </div>
                   </div>
                 </div>
-                <div className={styles.boardBadge}>Live board</div>
               </div>
               <h3>Review and share</h3>
               <p>
