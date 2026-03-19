@@ -28,6 +28,7 @@ Use `jobpull` if you want to:
 
 1. [Cloudflare Quick Start](./getting-started/cloudflare-quickstart.md)
 2. [Docker Compose Quick Start](./getting-started/docker-compose.md)
-3. [Starter Packs](./guides/starter-packs.md)
-4. [Source Feeds](./guides/source-feeds.md)
-5. [Operations](./guides/operations.md)
+3. [Customization](./guides/customization.md)
+4. [Starter Packs](./guides/starter-packs.md)
+5. [Source Feeds](./guides/source-feeds.md)
+6. [Operations](./guides/operations.md)

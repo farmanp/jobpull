@@ -41,6 +41,7 @@ npm run cli -- packs apply engineering
 ## Recommended usage
 
 Start with the closest pack, crawl once, inspect results, then tune from there. Packs are a baseline, not the final state.
+If you need to change the target role or branding after the first pass, use the [Customization guide](./customization.md).
 
 ## Managed starter sources
 

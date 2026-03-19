@@ -25,6 +25,7 @@ npm run cli -- sources
 ```
 
 That flow writes the correct `type`, `base_url`, and `config_json` shape for supported providers.
+If you are deciding how to rebrand the board or which preset to start from, see the [Customization guide](./customization.md).
 
 ## Validation rule for new providers
 

@@ -249,7 +249,8 @@ ${BOLD}Trigger a crawl:${RESET}
 ${BOLD}Customize your board:${RESET}
   Use ${CYAN}npx tsx scripts/cli/index.ts packs list${RESET} or ${CYAN}... packs apply engineering${RESET}
   to swap role presets, or ${CYAN}config${RESET} to tune filters manually.
-  See ${CYAN}CUSTOMIZING.md${RESET} for a full guide.
+  See ${CYAN}https://farmanp.github.io/jobpull/docs/guides/customizing${RESET}
+  or run ${CYAN}npm run dev:docs${RESET} for the full guide locally.
 
 ${BOLD}Deploy to Cloudflare:${RESET}
   ${CYAN}cd worker && npx wrangler deploy${RESET}

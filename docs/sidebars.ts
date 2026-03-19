@@ -15,6 +15,7 @@ const sidebars: SidebarsConfig = {
       type: "category",
       label: "Guides",
       items: [
+        "guides/customization",
         "guides/starter-packs",
         "guides/source-feeds",
         "guides/operations"

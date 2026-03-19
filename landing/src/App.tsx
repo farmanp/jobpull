@@ -1,8 +1,9 @@
 import "./styles.css";
 
 const REPO_URL = "https://github.com/farmanp/jobpull";
-const DOCS_URL = `${REPO_URL}#readme`;
-const CUSTOMIZING_URL = `${REPO_URL}/blob/main/CUSTOMIZING.md`;
+const DOCS_URL = "https://farmanp.github.io/jobpull/";
+const SETUP_URL = "https://farmanp.github.io/jobpull/docs/getting-started/cloudflare-quickstart";
+const CUSTOMIZE_URL = "https://farmanp.github.io/jobpull/docs/guides/customization";
 
 function JobCardMockup({
   title,
@@ -68,7 +69,7 @@ export default function App() {
             <a href={DOCS_URL} className="button button-outline" target="_blank" rel="noreferrer">
               Read Docs
             </a>
-            <a href={CUSTOMIZING_URL} className="button button-solid" target="_blank" rel="noreferrer">
+            <a href={CUSTOMIZE_URL} className="button button-solid" target="_blank" rel="noreferrer">
               Customize
             </a>
           </div>
@@ -79,16 +80,16 @@ export default function App() {
         <section className="hero">
           <div className="hero-container">
             <div className="hero-content">
-              <div className="pill-badge">Cloudflare-native job board</div>
+              <div className="pill-badge">Cloudflare-first job board</div>
               <h1 className="hero-title">
                 Run your own board.
                 <br />
                 Tune it to your search.
               </h1>
               <p className="hero-subtitle">
-                jobpull is an open-source crawler and dashboard for Greenhouse, Lever, and JSON job feeds like
-                RemoteOK, Remotive, Arbeitnow, and Working Nomads. It ships pre-tuned for remote product roles, but
-                the rules are yours to change.
+                jobpull is an open-source crawler and dashboard for public job feeds from Greenhouse, Lever, Ashby,
+                Recruitee, Personio XML, and generic JSON sources. It ships pre-tuned for remote product roles, with
+                starter packs for product, engineering, design, and GTM.
               </p>
 
               <div className="hero-cta-group">
@@ -96,11 +97,11 @@ export default function App() {
                   <a href="#how-it-works" className="button button-primary button-large">
                     See How It Works
                   </a>
-                  <a href="#platform" className="button button-outline button-large">
-                    Explore the Platform
+                  <a href={SETUP_URL} className="button button-outline button-large" target="_blank" rel="noreferrer">
+                    Setup Guide
                   </a>
                 </div>
-                <span className="hero-note">Workers + D1 + Pages. Daily cron included.</span>
+                <span className="hero-note">Cloudflare-first, with a Docker path and daily crawl scheduling.</span>
               </div>
             </div>
 
@@ -264,7 +265,10 @@ export default function App() {
                 </li>
                 <li>
                   <strong>Rebrandable defaults</strong>
-                  <p>Change the board name, tagline, seed sources, focus categories, and theme without rewriting the app.</p>
+                  <p>
+                    Change the board name, tagline, starter pack, seed sources, focus categories, and theme without
+                    rewriting the app.
+                  </p>
                 </li>
               </ul>
             </div>
@@ -308,7 +312,8 @@ export default function App() {
               <h2 className="section-title">Scheduled crawling without a hosted platform.</h2>
               <p className="section-subtitle">
                 The worker ships with a daily Cloudflare cron, an authenticated run endpoint for manual refreshes, and
-                D1-backed configuration shared by the crawler, CLI, and admin UI.
+                D1-backed configuration shared by the crawler, CLI, and admin UI. The Docker path keeps the same
+                workflow with SQLite.
               </p>
             </div>
             <div className="automation-grid">
@@ -335,10 +340,15 @@ export default function App() {
         <section className="bottom-cta">
           <div className="cta-container">
             <h2>Launch a board that matches your search.</h2>
-            <p>Fork the repo, tweak the filters, and deploy the worker plus frontend on your own Cloudflare account.</p>
-            <a href={DOCS_URL} className="button button-solid button-large" target="_blank" rel="noreferrer">
-              Open Setup Guide
-            </a>
+            <p>Fork the repo, pick a starter pack, and deploy the board on Cloudflare or Docker.</p>
+            <div className="cta-actions">
+              <a href={SETUP_URL} className="button button-solid button-large" target="_blank" rel="noreferrer">
+                Open Setup Guide
+              </a>
+              <a href={DOCS_URL} className="button button-outline button-large" target="_blank" rel="noreferrer">
+                Browse Docs
+              </a>
+            </div>
           </div>
         </section>
       </main>
@@ -348,7 +358,7 @@ export default function App() {
           <div className="footer-brand">jobpull</div>
           <div className="footer-links">
             <span>Open Source Software</span>
-            <a href={CUSTOMIZING_URL} target="_blank" rel="noreferrer">
+            <a href={CUSTOMIZE_URL} target="_blank" rel="noreferrer">
               Customization Guide
             </a>
             <a href={REPO_URL} target="_blank" rel="noreferrer">

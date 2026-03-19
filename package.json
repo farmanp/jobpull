@@ -1,6 +1,7 @@
 {
   "name": "jobpull",
   "private": true,
+  "license": "MIT",
   "workspaces": [
     "worker",
     "web",

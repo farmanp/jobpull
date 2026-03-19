@@ -5,8 +5,8 @@ import type * as Preset from "@docusaurus/preset-classic";
 const config: Config = {
   title: "jobpull",
   tagline: "Self-hosted job board docs and operator guides",
-  url: "http://127.0.0.1",
-  baseUrl: "/",
+  url: "https://farmanp.github.io",
+  baseUrl: "/jobpull/",
   onBrokenLinks: "throw",
   favicon: "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='90'%3E%F0%9F%94%8D%3C/text%3E%3C/svg%3E",
   organizationName: "farmanp",
@@ -44,7 +44,9 @@ const config: Config = {
       items: [
         { to: "/docs/intro", label: "Docs", position: "left" },
         { to: "/docs/getting-started/cloudflare-quickstart", label: "Cloudflare", position: "left" },
-        { to: "/docs/getting-started/docker-compose", label: "Docker", position: "left" }
+        { to: "/docs/getting-started/docker-compose", label: "Docker", position: "left" },
+        { to: "/docs/guides/customization", label: "Customize", position: "left" },
+        { href: "https://github.com/farmanp/jobpull", label: "GitHub", position: "right" }
       ]
     },
     footer: {
@@ -55,6 +57,7 @@ const config: Config = {
           items: [
             { label: "Overview", to: "/docs/intro" },
             { label: "Starter Packs", to: "/docs/guides/starter-packs" },
+            { label: "Customization", to: "/docs/guides/customization" },
             { label: "Operations", to: "/docs/guides/operations" }
           ]
         },
@@ -63,6 +66,13 @@ const config: Config = {
           items: [
             { label: "Cloudflare Quick Start", to: "/docs/getting-started/cloudflare-quickstart" },
             { label: "Docker Compose", to: "/docs/getting-started/docker-compose" }
+          ]
+        },
+        {
+          title: "Repo",
+          items: [
+            { label: "GitHub", href: "https://github.com/farmanp/jobpull" },
+            { label: "Issues", href: "https://github.com/farmanp/jobpull/issues" }
           ]
         }
       ],

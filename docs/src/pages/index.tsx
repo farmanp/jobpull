@@ -20,6 +20,11 @@ const cards = [
     to: "/docs/guides/starter-packs"
   },
   {
+    title: "Customization",
+    body: "Tune role targeting, sources, branding, cron, and stale-job behavior.",
+    to: "/docs/guides/customization"
+  },
+  {
     title: "Source Feeds",
     body: "Configure Greenhouse, Lever, Ashby, Recruitee, Personio XML, and JSON feeds.",
     to: "/docs/guides/source-feeds"
@@ -40,22 +45,22 @@ export default function Home(): JSX.Element {
   return (
     <Layout
       title="Docs"
-      description="Docusaurus documentation site for jobpull setup, deployment, and operations."
+      description="Docusaurus documentation site for jobpull setup, deployment, customization, and operations."
     >
       <main className={styles.page}>
         <section className={styles.hero}>
-          <p className={styles.eyebrow}>Docs Server</p>
+          <p className={styles.eyebrow}>Published Docs</p>
           <h1>jobpull Docs</h1>
           <p className={styles.copy}>
-            Setup guides, deployment paths, starter-pack workflows, and operator runbooks for the
+            Setup guides, deployment paths, customization workflows, and operator runbooks for the
             self-hosted job board.
           </p>
           <div className={styles.actions}>
             <Link className="button button--primary button--lg" to="/docs/intro">
               Open Docs
             </Link>
-            <Link className={styles.secondaryAction} to="/docs/getting-started/docker-compose">
-              Docker Guide
+            <Link className={styles.secondaryAction} to="/docs/guides/customization">
+              Customize
             </Link>
           </div>
         </section>

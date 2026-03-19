@@ -1,6 +1,7 @@
 {
   "name": "jobpull-docs",
   "private": true,
+  "license": "MIT",
   "scripts": {
     "dev": "docusaurus start --host 127.0.0.1 --port 4175",
     "build": "docusaurus build",
