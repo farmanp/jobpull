@@ -8,10 +8,21 @@ enabled = true
 [vars]
 # CHANGE ME: set your contact email in the crawler User-Agent
 USER_AGENT = "JobPullBot/1.0 (+contact:you@example.com)"
+# Required for owner sessions and magic-link sign-in.
+SESSION_SECRET = "replace-me"
+# Optional owner auth policy flags.
+MAGIC_LINK_DELIVERY = "disabled"
+BOARD_VISIBILITY_DEFAULT = "private"
+ALLOW_UNCLAIMED_BROWSE = "false"
+# Optional but required for subscriber email digests.
+EMAIL_FROM = "JobPull <digest@example.com>"
+EMAIL_REPLY_TO = "support@example.com"
+PUBLIC_BASE_URL = "https://your-board.example.com"
 DEFAULT_TIMEOUT_MS = "10000"
 DEFAULT_MAX_RETRIES = "3"
 HOST_CONCURRENCY = "2"
 HOST_SPACING_MS = "750"
+CRON_SCHEDULE = "0 7 * * *"
 
 [[d1_databases]]
 binding = "DB"
@@ -22,4 +33,3 @@ migrations_dir = "migrations"
 
 [triggers]
 crons = ["0 7 * * *"]
-

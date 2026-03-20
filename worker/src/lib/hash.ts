@@ -16,7 +16,7 @@ export function normalizeKeyPart(value: string): string {
   return value.trim().toLowerCase().replace(/\s+/g, " ");
 }
 
-async function sha256(message: string): Promise<string> {
+export async function sha256Hex(message: string): Promise<string> {
   const msgBuffer = new TextEncoder().encode(message);
   const hashBuffer = await crypto.subtle.digest("SHA-256", msgBuffer);
   const hashArray = Array.from(new Uint8Array(hashBuffer));
@@ -31,5 +31,5 @@ export async function buildJobId(company: string, title: string, location: strin
     canonicalizeUrl(url)
   ].join("|");
 
-  return sha256(key);
+  return sha256Hex(key);
 }

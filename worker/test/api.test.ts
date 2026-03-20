@@ -29,6 +29,14 @@ interface MockCrawlRunRow {
   jobs_added: number;
 }
 
+interface MockBoardStateRow {
+  id: string;
+  owner_user_id: string | null;
+  visibility: "private" | "public";
+  claimed_at: string | null;
+  published_at: string | null;
+}
+
 class MockPreparedStatement {
   private values: unknown[] = [];
 
@@ -60,6 +68,13 @@ class MockD1Database {
   jobs: MockJobRow[] = [];
   sources: MockSourceRow[] = [];
   crawlRuns: MockCrawlRunRow[] = [];
+  boardState: MockBoardStateRow = {
+    id: "singleton",
+    owner_user_id: null,
+    visibility: "public",
+    claimed_at: null,
+    published_at: null
+  };
 
   prepare(sql: string): MockPreparedStatement {
     return new MockPreparedStatement(this, sql);
@@ -72,6 +87,10 @@ class MockD1Database {
   async first<T>(sql: string, values: unknown[]): Promise<T | null> {
     if (sql.includes("SELECT key, value FROM board_config")) {
       return null;
+    }
+
+    if (sql.includes("FROM board_state")) {
+      return this.boardState as T;
     }
 
     if (sql.includes("SELECT COUNT(*) as total FROM jobs WHERE is_stale = 0")) {
@@ -265,5 +284,125 @@ describe("worker API stale job behavior", () => {
     expect(payload.activeSources).toBe(2);
     expect(payload.staleThresholdDays).toBe(14);
     expect(payload.lastCrawl).toMatchObject({ status: "success", jobsAdded: 9 });
+  });
+
+  it("allows browsing an unclaimed private board when ALLOW_UNCLAIMED_BROWSE is enabled", async () => {
+    db.boardState = {
+      id: "singleton",
+      owner_user_id: null,
+      visibility: "private",
+      claimed_at: null,
+      published_at: null
+    };
+    env = {
+      ...env,
+      ALLOW_UNCLAIMED_BROWSE: "true"
+    };
+
+    const metaResponse = await worker.fetch(new Request("https://example.com/api/meta"), env);
+    const jobsResponse = await worker.fetch(new Request("https://example.com/api/jobs"), env);
+
+    expect(metaResponse.status).toBe(200);
+    expect(jobsResponse.status).toBe(200);
+
+    const metaPayload = await metaResponse.json() as {
+      viewerCanBrowse: boolean;
+      auth: { claimRequired: boolean; magicLinkDelivery: string };
+    };
+
+    expect(metaPayload.viewerCanBrowse).toBe(true);
+    expect(metaPayload.auth.claimRequired).toBe(false);
+  });
+
+  it("returns pack and source-template metadata for the admin UI", async () => {
+    const packsResponse = await worker.fetch(
+      new Request("https://example.com/api/admin/packs", {
+        headers: { authorization: "Bearer test-token" }
+      }),
+      env
+    );
+    const templatesResponse = await worker.fetch(
+      new Request("https://example.com/api/admin/source-templates", {
+        headers: { authorization: "Bearer test-token" }
+      }),
+      env
+    );
+
+    expect(packsResponse.status).toBe(200);
+    expect(templatesResponse.status).toBe(200);
+
+    const packsPayload = await packsResponse.json() as {
+      packs: Array<{
+        key: string;
+        starterSources: Array<{ id: string }>;
+        review: { tagline: string; remoteOnly: boolean; focusAreas: string[]; boardTags: string[] };
+      }>;
+    };
+    const templatesPayload = await templatesResponse.json() as { templates: Array<{ type: string; fields: Array<{ key: string }> }> };
+
+    expect(packsPayload.packs.map((pack) => pack.key)).toEqual(["product", "engineering", "design", "gtm"]);
+    expect(packsPayload.packs[0]?.starterSources[0]?.id).toBe("starter-remoteok");
+    expect(packsPayload.packs[0]?.review.tagline).toBeTruthy();
+    expect(Array.isArray(packsPayload.packs[0]?.review.focusAreas)).toBe(true);
+    expect(templatesPayload.templates.map((template) => template.type)).toContain("ashby");
+    expect(templatesPayload.templates.find((template) => template.type === "remote_json")?.fields.map((field) => field.key))
+      .toContain("assumeRemote");
+  });
+
+  it("reports the runtime as read-only on the cloudflare worker path", async () => {
+    const runtimeResponse = await worker.fetch(
+      new Request("https://example.com/api/admin/runtime", {
+        headers: { authorization: "Bearer test-token" }
+      }),
+      env
+    );
+
+    expect(runtimeResponse.status).toBe(200);
+    const runtimePayload = await runtimeResponse.json() as {
+      platform: string;
+      schedule: string;
+      scheduleEditable: boolean;
+      staleThresholdDays: number;
+      editableFields: string[];
+      checks: {
+        schedulerAvailable: boolean;
+        adminTokenConfigured: boolean;
+        runtimeStorageAvailable: boolean;
+        databaseConnected: boolean;
+      };
+      externalSteps: string[];
+    };
+
+    expect(runtimePayload.platform).toBe("cloudflare");
+    expect(runtimePayload.schedule).toBe("0 7 * * *");
+    expect(runtimePayload.scheduleEditable).toBe(false);
+    expect(runtimePayload.staleThresholdDays).toBe(14);
+    expect(runtimePayload.editableFields).toEqual([]);
+    expect(runtimePayload.checks).toEqual({
+      schedulerAvailable: true,
+      adminTokenConfigured: true,
+      runtimeStorageAvailable: false,
+      databaseConnected: true
+    });
+    expect(runtimePayload.externalSteps[0]).toContain("Current cron schedule");
+    expect(runtimePayload.externalSteps[1]).toContain("Worker cron trigger");
+  });
+
+  it("rejects runtime schedule edits on the cloudflare worker path", async () => {
+    const response = await worker.fetch(
+      new Request("https://example.com/api/admin/runtime", {
+        method: "PUT",
+        headers: {
+          authorization: "Bearer test-token",
+          "content-type": "application/json"
+        },
+        body: JSON.stringify({ schedule: "30 5 * * *" })
+      }),
+      env
+    );
+
+    expect(response.status).toBe(409);
+    const payload = await response.json() as { error: string };
+    expect(payload.error).toContain("Cloudflare cron trigger");
   });
 });

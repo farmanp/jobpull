@@ -3,3 +3,11 @@
 # NEVER commit the .dev.vars file itself.
 
 ADMIN_TOKEN=changeme
+SESSION_SECRET=
+MAGIC_LINK_DELIVERY=console
+BOARD_VISIBILITY_DEFAULT=private
+ALLOW_UNCLAIMED_BROWSE=true
+RESEND_API_KEY=
+EMAIL_FROM=JobPull <digest@example.com>
+EMAIL_REPLY_TO=
+PUBLIC_BASE_URL=http://127.0.0.1:8787

@@ -68,16 +68,16 @@ export default function Home(): JSX.Element {
         <section className={styles.heroSection}>
           <div className={styles.heroContainer}>
             <div className={styles.heroContent}>
-              <div className={styles.pillBadge}>Cloudflare-first job board</div>
+              <div className={styles.pillBadge}>Personal board first</div>
               <h1 className={styles.heroTitle}>
-                Run your own board.
+                Run your own personal board.
                 <br />
-                Tune it to your search.
+                Publish it when you're ready.
               </h1>
               <p className={styles.heroSubtitle}>
-                jobpull is an open-source crawler and dashboard for public job feeds from Greenhouse, Lever, Ashby,
-                Recruitee, Personio XML, and generic JSON sources. It ships pre-tuned for remote product roles, with
-                starter packs for product, engineering, design, and GTM.
+                jobpull is an open-source personal job board for public feeds from Greenhouse, Lever, Ashby,
+                Recruitee, Personio XML, and generic JSON sources. Claim it once, keep it private while you track your
+                own search, then publish it later if you want to turn it into a niche board.
               </p>
               <div className={styles.heroActions}>
                 <Link className={`${styles.button} ${styles.buttonPrimary}`} to="/docs/getting-started/cloudflare-quickstart">
@@ -90,7 +90,7 @@ export default function Home(): JSX.Element {
                   Customize
                 </Link>
               </div>
-              <p className={styles.heroNote}>Cloudflare-first, with a Docker path and daily crawl scheduling.</p>
+              <p className={styles.heroNote}>Cloudflare-first, with a Docker path, owner magic links, and private-by-default visibility.</p>
             </div>
 
             <div className={styles.heroVisual}>

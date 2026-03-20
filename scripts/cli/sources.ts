@@ -6,6 +6,12 @@ import {
   BOLD, RESET, GREEN, CYAN, DIM, RED, YELLOW,
   ask, confirm, ensureToken, adminFetch, success, fail, warn
 } from "./helpers.ts";
+import {
+  buildSourceRecordFromTemplate,
+  getSourceTemplate,
+  listSourceTemplates,
+  type SourceTemplateValues
+} from "../../shared/sourceTemplates.ts";
 
 type Source = {
   id: string;
@@ -15,8 +21,6 @@ type Source = {
   config_json: string;
   enabled: number;
 };
-
-const SUPPORTED_SOURCE_TYPES = ["greenhouse", "lever", "remote_json", "ashby", "recruitee", "personio_xml"] as const;
 
 function printSourceTable(sources: Source[]) {
   console.log(`\n  ${BOLD}${"ID".padEnd(20)} ${"Name".padEnd(30)} ${"Type".padEnd(15)} Status${RESET}`);
@@ -78,90 +82,48 @@ export async function runSources(apiBase: string, token: string) {
 async function addSource(apiBase: string, token: string) {
   console.log(`\n${BOLD}Add a new source${RESET}\n`);
 
+  const supportedTypes = listSourceTemplates().map((template) => template.type).join(" / ");
   const type = await ask(
-    "Source type (greenhouse / lever / remote_json / ashby / recruitee / personio_xml)",
+    `Source type (${supportedTypes})`,
     "greenhouse"
   );
-  if (!SUPPORTED_SOURCE_TYPES.includes(type as (typeof SUPPORTED_SOURCE_TYPES)[number])) {
+  const template = getSourceTemplate(type);
+  if (!template) {
     fail("Invalid source type");
     return;
   }
 
-  let id = "";
-  let name = "";
-  let base_url = "";
-  let config_json = "{}";
+  const values: SourceTemplateValues = {};
+  for (const field of template.fields) {
+    if (field.kind === "boolean") {
+      values[field.key] = await confirm(
+        `${field.label}${field.description ? ` — ${field.description}` : ""}`,
+        field.defaultValue === true
+      );
+      continue;
+    }
 
-  if (type === "greenhouse") {
-    const company = await ask("Company name (e.g. stripe, airbnb)");
-    if (!company) { fail("Company name required"); return; }
-    const boardToken = await ask("Greenhouse board token", company.toLowerCase());
-    const deptKeywords = await ask("Department keywords (comma-separated)", "product");
+    values[field.key] = await ask(
+      `${field.label}${field.description ? ` — ${field.description}` : ""}`,
+      typeof field.defaultValue === "string" ? field.defaultValue : undefined
+    );
+  }
 
-    id = `gh-${boardToken}`;
-    name = `${company} Greenhouse`;
-    base_url = "https://boards-api.greenhouse.io";
-    config_json = JSON.stringify({
-      boardToken,
-      departmentKeywords: deptKeywords.split(",").map((s) => s.trim()),
-    });
-  } else if (type === "lever") {
-    const company = await ask("Company name (e.g. netlify)");
-    if (!company) { fail("Company name required"); return; }
-    const site = await ask("Lever site slug", company.toLowerCase());
-    const teamKeywords = await ask("Team keywords (comma-separated)", "product");
-
-    id = `lever-${site}`;
-    name = `${company} Lever`;
-    base_url = "https://api.lever.co";
-    config_json = JSON.stringify({
-      site,
-      teamKeywords: teamKeywords.split(",").map((s) => s.trim()),
-    });
-  } else if (type === "ashby") {
-    const company = await ask("Company name (display label)");
-    if (!company) { fail("Company name required"); return; }
-    const organizationSlug = await ask("Ashby organization slug", company.toLowerCase());
-
-    id = `ashby-${organizationSlug}`;
-    name = `${company} Ashby`;
-    base_url = "https://api.ashbyhq.com";
-    config_json = JSON.stringify({ organizationSlug });
-  } else if (type === "recruitee") {
-    const company = await ask("Company name (display label)");
-    if (!company) { fail("Company name required"); return; }
-    const subdomain = await ask("Recruitee subdomain", company.toLowerCase());
-
-    id = `recruitee-${subdomain}`;
-    name = `${company} Recruitee`;
-    base_url = `https://${subdomain}.recruitee.com`;
-    config_json = JSON.stringify({ subdomain });
-  } else if (type === "personio_xml") {
-    const company = await ask("Company name (display label)");
-    if (!company) { fail("Company name required"); return; }
-    const companySlug = await ask("Personio company slug", company.toLowerCase());
-    const language = await ask("Language", "en");
-
-    id = `personio-${companySlug}`;
-    name = `${company} Personio XML`;
-    base_url = `https://${companySlug}.jobs.personio.de`;
-    config_json = JSON.stringify({ companySlug, language });
-  } else {
-    name = await ask("Source name");
-    const url = await ask("API URL");
-    const sourceLabel = await ask("Source label", name.toLowerCase().replace(/\s+/g, ""));
-    id = sourceLabel;
-    base_url = new URL(url).origin;
-    config_json = JSON.stringify({ url, sourceLabel });
+  let resolved;
+  try {
+    resolved = buildSourceRecordFromTemplate(template.type, values);
+  } catch (error) {
+    fail(error instanceof Error ? error.message : String(error));
+    return;
   }
 
   const resp = await adminFetch(apiBase, token, "/api/admin/sources", {
     method: "POST",
-    body: JSON.stringify({ id, type, name, base_url, config_json, enabled: true }),
+    body: JSON.stringify(resolved),
   });
 
   if (resp.ok) {
-    success(`Added source: ${name} (${id})`);
+    success(`Added source: ${resolved.name} (${resolved.id})`);
   } else {
     const err = await resp.text();
     fail(`Failed to add source: ${err}`);

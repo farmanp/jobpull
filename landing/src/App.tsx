@@ -84,16 +84,16 @@ export default function App() {
         <section className="hero">
           <div className="hero-container">
             <div className="hero-content">
-              <div className="pill-badge">Cloudflare-first job board</div>
+              <div className="pill-badge">Personal board first</div>
               <h1 className="hero-title">
-                Run your own board.
+                Run your own personal board.
                 <br />
-                Tune it to your search.
+                Publish it when you're ready.
               </h1>
               <p className="hero-subtitle">
-                jobpull is an open-source crawler and dashboard for public job feeds from Greenhouse, Lever, Ashby,
-                Recruitee, Personio XML, and generic JSON sources. It ships pre-tuned for remote product roles, with
-                starter packs for product, engineering, design, and GTM.
+                jobpull is an open-source personal job board for public feeds from Greenhouse, Lever, Ashby,
+                Recruitee, Personio XML, and generic JSON sources. Claim it once, keep it private while you track your
+                own search, then publish it later if you want to turn it into a niche board.
               </p>
 
               <div className="hero-cta-group">
@@ -108,7 +108,7 @@ export default function App() {
                     Setup Guide
                   </a>
                 </div>
-                <span className="hero-note">Cloudflare-first, with a Docker path and daily crawl scheduling.</span>
+                <span className="hero-note">Cloudflare-first, with a Docker path, owner magic links, and private-by-default visibility.</span>
               </div>
             </div>
 

@@ -37,6 +37,19 @@ const mockMeta = {
   tagline: 'Test tagline',
   remoteOnly: true,
   focusCategories: ['growth', 'technical'],
+  claimed: true,
+  visibility: 'public',
+  viewerCanBrowse: true,
+  viewerIsOwner: false
+};
+
+const mockViewer = {
+  authenticated: false,
+  isOwner: false,
+  email: null,
+  boardClaimed: true,
+  boardVisibility: 'public',
+  hasResume: false
 };
 
 const mockStats = {
@@ -60,13 +73,29 @@ function createMockResponse(data: unknown) {
  * Helper: mock fetch to return different data based on URL path.
  * /api/meta → mockMeta, /api/stats → mockStats, /api/jobs → { items: mockJobs }
  */
-function mockFetchAll(overrides?: { jobs?: unknown; meta?: unknown; stats?: unknown }) {
-  (global.fetch as any).mockImplementation((url: string) => {
+function mockFetchAll(overrides?: { jobs?: unknown; meta?: unknown; stats?: unknown; subscription?: unknown; me?: unknown }) {
+  (global.fetch as any).mockImplementation((url: string, init?: RequestInit) => {
     if (url.includes('/api/meta')) {
       return Promise.resolve(createMockResponse(overrides?.meta ?? mockMeta));
     }
+    if (url.includes('/api/me')) {
+      return Promise.resolve(createMockResponse(overrides?.me ?? mockViewer));
+    }
     if (url.includes('/api/stats')) {
       return Promise.resolve(createMockResponse(overrides?.stats ?? mockStats));
+    }
+    if (url.includes('/api/subscriptions') && init?.method === 'POST') {
+      return Promise.resolve(
+        createMockResponse(
+          overrides?.subscription ?? {
+            ok: true,
+            message: 'Check your inbox to confirm the daily digest subscription.'
+          }
+        )
+      );
+    }
+    if (/\/api\/jobs\/[^/?]+$/.test(url)) {
+      return Promise.resolve(createMockResponse(mockJobs[0]));
     }
     if (url.includes('/api/jobs')) {
       return Promise.resolve(createMockResponse(overrides?.jobs ?? { items: mockJobs }));
@@ -135,7 +164,32 @@ describe('App', () => {
 
     // Expect fetch to be called with query param
     await waitFor(() => {
-      expect(global.fetch).toHaveBeenCalledWith(expect.stringContaining('query=Acme'));
+      expect(global.fetch).toHaveBeenCalledWith(
+        expect.stringContaining('query=Acme'),
+        expect.objectContaining({ credentials: 'include' })
+      );
+    });
+  });
+
+  it('clears filters after the user narrows the list', async () => {
+    mockFetchAll();
+
+    render(<App />);
+
+    await waitFor(() => {
+      expect(screen.getByText('Senior PM')).toBeInTheDocument();
+    });
+
+    fireEvent.change(screen.getByLabelText(/search jobs/i), { target: { value: 'Acme' } });
+
+    await waitFor(() => {
+      expect(screen.getByRole('button', { name: /clear filters/i })).toBeInTheDocument();
+    });
+
+    fireEvent.click(screen.getByRole('button', { name: /clear filters/i }));
+
+    await waitFor(() => {
+      expect((screen.getByLabelText(/search jobs/i) as HTMLInputElement).value).toBe('');
     });
   });
 
@@ -149,22 +203,47 @@ describe('App', () => {
     fireEvent.click(screen.getByText('Senior PM'));
 
     await waitFor(() => {
-      expect(global.fetch).toHaveBeenCalledWith(expect.stringContaining('/api/jobs/1'));
+      expect(global.fetch).toHaveBeenCalledWith(
+        expect.stringContaining('/api/jobs/1'),
+        expect.objectContaining({ credentials: 'include' })
+      );
     });
     expect(screen.getByRole('heading', { name: 'Senior PM' })).toBeInTheDocument();
     expect(screen.getByText('Build growth loop.')).toBeInTheDocument();
   });
 
   it('renders descriptions as escaped text instead of HTML', async () => {
-    mockFetchAll({
-      jobs: {
-        items: [
-          {
+    (global.fetch as any).mockImplementation((url: string) => {
+      if (url.includes('/api/meta')) {
+        return Promise.resolve(createMockResponse(mockMeta));
+      }
+      if (url.includes('/api/me')) {
+        return Promise.resolve(createMockResponse(mockViewer));
+      }
+      if (url.includes('/api/stats')) {
+        return Promise.resolve(createMockResponse(mockStats));
+      }
+      if (/\/api\/jobs\/[^/?]+$/.test(url)) {
+        return Promise.resolve(
+          createMockResponse({
             ...mockJobs[0],
             description: '<strong>Build growth loop.</strong>'
-          }
-        ]
+          })
+        );
       }
+      if (url.includes('/api/jobs')) {
+        return Promise.resolve(
+          createMockResponse({
+            items: [
+              {
+                ...mockJobs[0],
+                description: undefined
+              }
+            ]
+          })
+        );
+      }
+      return Promise.resolve(createMockResponse({}));
     });
 
     const { container } = render(<App />);
@@ -173,7 +252,10 @@ describe('App', () => {
     fireEvent.click(screen.getByText('Senior PM'));
 
     await waitFor(() => {
-      expect(global.fetch).toHaveBeenCalledWith(expect.stringContaining('/api/jobs/1'));
+      expect(global.fetch).toHaveBeenCalledWith(
+        expect.stringContaining('/api/jobs/1'),
+        expect.objectContaining({ credentials: 'include' })
+      );
     });
     expect(container.querySelector('.description strong')).toBeNull();
     expect(screen.getByText('<strong>Build growth loop.</strong>')).toBeInTheDocument();
@@ -181,20 +263,92 @@ describe('App', () => {
 
   it('handles API errors', async () => {
     (global.fetch as any).mockImplementation((url: string) => {
-      if (url.includes('/api/meta') || url.includes('/api/stats')) {
-        return Promise.resolve(createMockResponse({}));
+      if (url.includes('/api/meta')) {
+        return Promise.resolve(createMockResponse(mockMeta));
+      }
+      if (url.includes('/api/me')) {
+        return Promise.resolve(createMockResponse(mockViewer));
+      }
+      if (url.includes('/api/stats')) {
+        return Promise.resolve(createMockResponse(mockStats));
       }
       return Promise.resolve({
         ok: false,
         status: 500,
-        headers: { get: () => 'application/json' }
+        headers: { get: () => 'application/json' },
+        json: () => Promise.resolve({ error: 'Request failed: 500' })
       });
     });
 
     render(<App />);
 
     await waitFor(() => {
-      expect(screen.getByText(/api error: 500/i)).toBeInTheDocument();
+      expect(screen.getByText(/request failed: 500/i)).toBeInTheDocument();
     });
+  });
+
+  it('shows an inline detail error when the full job fetch fails', async () => {
+    (global.fetch as any).mockImplementation((url: string) => {
+      if (url.includes('/api/meta')) {
+        return Promise.resolve(createMockResponse(mockMeta));
+      }
+      if (url.includes('/api/me')) {
+        return Promise.resolve(createMockResponse(mockViewer));
+      }
+      if (url.includes('/api/stats')) {
+        return Promise.resolve(createMockResponse(mockStats));
+      }
+      if (/\/api\/jobs\/[^/?]+$/.test(url)) {
+        return Promise.resolve({
+          ok: false,
+          status: 500,
+          headers: { get: () => 'application/json' },
+          json: () => Promise.resolve({ error: 'Request failed' })
+        });
+      }
+      if (url.includes('/api/jobs')) {
+        return Promise.resolve(
+          createMockResponse({
+            items: [{ ...mockJobs[0], description: undefined }]
+          })
+        );
+      }
+      return Promise.resolve(createMockResponse({}));
+    });
+
+    render(<App />);
+
+    await waitFor(() => screen.getByText('Senior PM'));
+    fireEvent.click(screen.getByText('Senior PM'));
+
+    await waitFor(() => {
+      expect(screen.getByText(/could not load full job details/i)).toBeInTheDocument();
+    });
+  });
+
+  it('submits the public daily digest signup form', async () => {
+    mockFetchAll();
+
+    render(<App />);
+
+    await waitFor(() => {
+      expect(screen.getByText('Senior PM')).toBeInTheDocument();
+    });
+
+    fireEvent.change(screen.getByLabelText(/email address/i), {
+      target: { value: 'reader@example.com' }
+    });
+    fireEvent.click(screen.getByRole('button', { name: /subscribe/i }));
+
+    await waitFor(() => {
+      expect(global.fetch).toHaveBeenCalledWith(
+        expect.stringContaining('/api/subscriptions'),
+        expect.objectContaining({ method: 'POST' })
+      );
+    });
+
+    expect(
+      await screen.findByText(/check your inbox to confirm the daily digest subscription/i)
+    ).toBeInTheDocument();
   });
 });

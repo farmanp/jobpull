@@ -1,6 +1,6 @@
 # jobpull
 
-`jobpull` is a self-hosted job board starter kit. It crawls official public feeds, classifies roles, hides stale listings, and gives you a board you can tune for a role, team, or community.
+`jobpull` is a self-hosted personal job board starter kit. It crawls official public feeds, classifies roles, hides stale listings, and gives you a board you can keep private for your own search or publish later for a niche, team, or community.
 
 The public docs live at [https://farmanp.github.io/jobpull/](https://farmanp.github.io/jobpull/). Use the docs site for detailed setup, customization, deployment, and operations.
 Docs changes on `main` publish there through GitHub Pages via [`.github/workflows/docs.yml`](.github/workflows/docs.yml).
@@ -9,7 +9,12 @@ Docs changes on `main` publish there through GitHub Pages via [`.github/workflow
 
 - Public read-only feed support for Greenhouse, Lever, Ashby, Recruitee, Personio XML, and generic JSON
 - Starter packs for `product`, `engineering`, `design`, and `gtm`
+- Claim-once owner flow with email magic-link sign-in
+- Private-by-default board visibility with a publish toggle
+- Personal tracking with favorites, statuses, notes, and one active resume/profile
 - Cloudflare reference deployment and a portable Docker/Node path
+- Double opt-in daily digest email delivery via Resend
+- Env-driven owner auth policy for magic links, default visibility, and unclaimed-board browsing
 - CLI flows for setup, packs, sources, crawl, and status
 
 ## Quick start
@@ -28,6 +33,8 @@ npm run dev:worker
 npm run dev:web
 npm run dev:docs
 ```
+
+Then open the web app, claim the board once with your deploy-created `ADMIN_TOKEN`, and finish setup from the browser. After that, you sign back in with an emailed magic link instead of re-entering the admin token.
 
 ## Read the docs
 

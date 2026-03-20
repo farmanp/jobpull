@@ -11,7 +11,7 @@ import { getStaleCutoffIso, getStaleThresholdDays } from "./lib/stale";
 import { inferFocus, inferRemoteStatus, inferTags, isTargetRole, shouldKeepForRemoteBoard } from "./lib/classify";
 import { loadConfigFromDB, setActiveConfig } from "./config";
 import { normalizeDescriptionText } from "./lib/text";
-import type { CrawlError, CrawlSummary, Env, JobCandidate, NormalizedJob, SourceRecord } from "./types";
+import type { CrawlError, CrawlSummary, CrawlTrigger, Env, JobCandidate, NormalizedJob, SourceRecord } from "./types";
 
 function uuid(): string {
   return crypto.randomUUID();
@@ -30,7 +30,7 @@ function toIso(input?: string): string | undefined {
   return new Date(parsed).toISOString();
 }
 
-async function normalizeJob(candidate: JobCandidate, nowIso: string): Promise<NormalizedJob | null> {
+export async function normalizeJobCandidate(candidate: JobCandidate, nowIso: string): Promise<NormalizedJob | null> {
   const description = normalizeDescriptionText(candidate.description);
 
   if (!isTargetRole(candidate.title, description)) {
@@ -88,7 +88,10 @@ export async function fetchSourceJobs(source: SourceRecord, client: SafeFetchCli
   }
 }
 
-export async function runCrawl(env: Env): Promise<CrawlSummary> {
+export async function runCrawl(
+  env: Env,
+  options: { trigger?: CrawlTrigger } = {}
+): Promise<CrawlSummary> {
   // Reload dynamic config so cron picks up CLI/UI changes
   const config = await loadConfigFromDB(env.DB);
   setActiveConfig(config);
@@ -96,10 +99,13 @@ export async function runCrawl(env: Env): Promise<CrawlSummary> {
   const runId = uuid();
   const startedAt = new Date().toISOString();
   const errors: CrawlError[] = [];
+  const trigger = options.trigger ?? "manual";
 
   await env.DB
-    .prepare("INSERT INTO crawl_runs (id, started_at, status, jobs_added, errors_json) VALUES (?, ?, 'running', 0, '[]')")
-    .bind(runId, startedAt)
+    .prepare(
+      "INSERT INTO crawl_runs (id, started_at, trigger, status, jobs_added, errors_json) VALUES (?, ?, ?, 'running', 0, '[]')"
+    )
+    .bind(runId, startedAt, trigger)
     .run();
 
   const sources = await env.DB
@@ -131,7 +137,7 @@ export async function runCrawl(env: Env): Promise<CrawlSummary> {
       try {
         const jobs = await fetchSourceJobs(source, client);
         for (const job of jobs) {
-          const normalizedJob = await normalizeJob(job, nowIso);
+          const normalizedJob = await normalizeJobCandidate(job, nowIso);
           if (normalizedJob) {
             normalized.push(normalizedJob);
           }
@@ -246,6 +252,7 @@ export async function runCrawl(env: Env): Promise<CrawlSummary> {
     finishedAt,
     jobsAdded,
     errors,
-    status
+    status,
+    trigger
   };
 }
